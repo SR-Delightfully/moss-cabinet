@@ -1,0 +1,2 @@
+# config/env.example.php
+
