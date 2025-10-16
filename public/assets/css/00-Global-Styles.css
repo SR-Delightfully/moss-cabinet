@@ -1,3 +1,4 @@
+/* ? Declaring root variables and website's color palette */
 :root {
     /* Website's Color Palette */
     /* Tones - Shades of Grey */
@@ -29,6 +30,8 @@
     --hr-color: var(--tone-00);
 }
 
+/* Themes: */
+/* ? Feel free to add additional themes if you want to! :D */
 :root[data-theme="lights-off"] {
     --background-color: var(--tone-00);
     --body-color: var(--tone-00);
@@ -52,7 +55,7 @@
     --hr-color: var(--tone-10);
 }
 
-/* Setting colors for website elements */
+/* ? Setting colors for website elements */
 /* ! to change color of element, please change color in the themes above ⬆️ */
 body {
     margin: 0;
@@ -79,9 +82,39 @@ h6 {
     color: var(--h6-color);
 }
 
-/* Media Queries: */
-/* Setting break points for different screen sizes */
+/* ? Useful classes to reduce code repetition */
+/* Div Layouts */
+.display-flex-row {
+    display: flex;
+    flex-flow: row nowrap;
+}
+.display-flex-col {
+    display: flex;
+    flex-flow: column nowrap;
+}
 
+/* Rounded Borders */
+.rounded-border-3 {
+    border-radius: 2rem;
+}
+.rounded-border-2 {
+    border-radius: 1rem;
+}
+.rounded-border-1 {
+    border-radius: 0.5rem;
+}
+/* Border styles */
+.border-3 {
+    border: 3px solid hotpink;
+}
+.border-2 {
+    border: 2px solid hotpink;
+}
+.border-1 {
+    border: 1dvi solid hotpink;
+}
+/* ? Media Queries: */
+/* ? Setting break points for different screen sizes */
 /* Default State - Will effect all queries */
 @media screen and (min-width: 300px) {
 }
