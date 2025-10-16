@@ -1,0 +1,107 @@
+:root {
+    /* Website's Color Palette */
+    /* Tones - Shades of Grey */
+    --tone-00: #000;
+    --tone-01: #0f0f0f;
+    --tone-02: #202020;
+    --tone-03: #303030;
+    --tone-04: #484848;
+    --tone-05: #606060;
+    --tone-06: #909090;
+    --tone-07: #b0b0b0;
+    --tone-08: #d0d0d0;
+    --tone-09: #e0e0e0;
+    --tone-10: #fff;
+
+    /* Colors - Varying hues and shades */
+    /* ? TODO: Add colors here :) */
+
+    /* ! Component variables */
+    /* ? to be used to allow different themes*/
+    --background-color: var(--tone-05);
+    --body-color: var(--tone-05);
+    --h1-color: var(--tone-00);
+    --h2-color: var(--tone-02);
+    --h3-color: var(--tone-03);
+    --h4-color: var(--tone-03);
+    --h5-color: var(--tone-03);
+    --h6-color: var(--tone-03);
+    --hr-color: var(--tone-00);
+}
+
+:root[data-theme="lights-off"] {
+    --background-color: var(--tone-00);
+    --body-color: var(--tone-00);
+    --h1-color: var(--tone-10);
+    --h2-color: var(--tone-08);
+    --h3-color: var(--tone-06);
+    --h4-color: var(--tone-06);
+    --h5-color: var(--tone-06);
+    --h6-color: var(--tone-06);
+    --hr-color: var(--tone-08);
+}
+:root[data-theme="lights-on"] {
+    --background-color: var(--tone-08);
+    --body-color: var(--tone-08);
+    --h1-color: var(--tone-01);
+    --h2-color: var(--tone-02);
+    --h3-color: var(--tone-03);
+    --h4-color: var(--tone-04);
+    --h5-color: var(--tone-04);
+    --h6-color: var(--tone-04);
+    --hr-color: var(--tone-10);
+}
+
+/* Setting colors for website elements */
+/* ! to change color of element, please change color in the themes above ⬆️ */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--body-color);
+}
+h1 {
+    color: var(--h1-color);
+}
+h2 {
+    color: var(--h2-color);
+}
+h3 {
+    color: var(--h3-color);
+}
+h4 {
+    color: var(--h4-color);
+}
+h5 {
+    color: var(--h5-color);
+}
+h6 {
+    color: var(--h6-color);
+}
+
+/* Media Queries: */
+/* Setting break points for different screen sizes */
+
+/* Default State - Will effect all queries */
+@media screen and (min-width: 300px) {
+}
+
+/* Extra Small Screens */
+@media screen and (max-width: 720px) {
+}
+
+/* Small Screens */
+@media screen and (min-width: 721px) and (max-width: 1280px) {
+}
+
+/* Medium Screens */
+@media screen and (min-width: 1281px) and (max-width: 1440px) {
+}
+
+/* Large Screens */
+@media screen and (min-width: 1441px) and (max-width: 1920px) {
+}
+
+/* Extra Large Screens */
+@media screen and (min-width: 1921px) {
+}
