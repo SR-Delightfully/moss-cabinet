@@ -28,6 +28,15 @@
     --h5-color: var(--tone-03);
     --h6-color: var(--tone-03);
     --hr-color: var(--tone-00);
+    --padding-h-3: 0vh 3vw;
+    --padding-h-2: 0vh 2vw;
+    --padding-h-1: 0vh 1vw;
+    --padding-v-3: 3vh 0vw;
+    --padding-v-2: 2vh 0vw;
+    --padding-v-1: 1vh 0vw;
+    --padding-3: 3rem;
+    --padding-2: 2rem;
+    --padding-1: 1rem;
 }
 
 /* Themes: */
@@ -83,6 +92,15 @@ h6 {
 }
 
 /* ? Useful classes to reduce code repetition */
+/* positions */
+/* center */
+.center {
+    position: relative;
+    left: 50%;
+    /* top: 50%; */
+    transform: translate(-50%, 0);
+}
+
 /* Div Layouts */
 .display-flex-row {
     display: flex;
@@ -113,6 +131,17 @@ h6 {
 .border-1 {
     border: 1dvi solid hotpink;
 }
+
+.page {
+    min-height: 100vh;
+    min-width: 90%;
+    max-width: 90vw;
+    padding: var(--padding-3);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
 /* ? Media Queries: */
 /* ? Setting break points for different screen sizes */
 /* Default State - Will effect all queries */
