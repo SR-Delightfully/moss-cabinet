@@ -16,6 +16,21 @@
 
     /* Colors - Varying hues and shades */
     /* ? TODO: Add colors here :) */
+    --color-yellow-0: #b8860b;
+    --color-yellow-1: #c29525;
+    --color-yellow-2: #d6b358;
+    --color-white-0: #a6a867;
+    --color-white-1: #c5c295;
+    --color-white-2: #e3dcc2;
+    --color-light-green-0: #222805;
+    --color-light-green-1: #383d1c;
+    --color-light-green-2: #5d6135;
+    --color-dark-green-0: #020b01;
+    --color-dark-green-1: #071002;
+    --color-dark-green-2: #131902;
+    --color-purple-0: #0a0201;
+    --color-purple-1: #190003;
+    --color-purple-2: #2e0014;
 
     /* ! Component variables */
     /* ? to be used to allow different themes*/
@@ -72,6 +87,9 @@ body {
     box-sizing: border-box;
     background-color: var(--body-color);
 }
+img {
+    max-width: 20vw;
+}
 h1 {
     color: var(--h1-color);
 }
@@ -91,6 +109,14 @@ h6 {
     color: var(--h6-color);
 }
 
+ul {
+    list-style: none;
+    & > li {
+        margin: none;
+        padding: none;
+    }
+}
+
 /* ? Useful classes to reduce code repetition */
 /* positions */
 /* center */
@@ -105,6 +131,7 @@ h6 {
 .display-flex-row {
     display: flex;
     flex-flow: row nowrap;
+    gap: 3rem;
 }
 .display-flex-col {
     display: flex;
@@ -166,4 +193,319 @@ h6 {
 
 /* Extra Large Screens */
 @media screen and (min-width: 1921px) {
+}
+
+/* __________________________________________________________________________x */
+.v-card-outer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+    margin: 0.5rem;
+
+    /*height: 20rem;*/
+    /*width: calc(20rem * 1.727);*/
+    width: 20rem;
+    height: calc(20rem * 1.727); /*ratio of a tarot card : 2.75 * 4.75in*/
+    padding: 0.5rem;
+    border: 2px solid #b78845;
+
+    perspective: 1000px;
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+}
+.v-card-outer:hover {
+    transform: rotateY(180deg);
+    transition-delay: 0.3s;
+}
+.v-card-inner {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border: 2px solid #b78845;
+    text-align: center;
+    transform-style: preserve-3d;
+}
+.v-card-outer::before,
+.v-card-outer::after {
+    position: absolute;
+    z-index: 900;
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #b78845;
+    top: -0.1rem;
+}
+.v-card-outer::before {
+    left: -0.1rem;
+}
+.v-card-outer::after {
+    right: -0.1rem;
+}
+.v-card-inner::before,
+.v-card-inner::after {
+    z-index: 900;
+    content: "";
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    color: #b78845;
+    bottom: -0.7rem;
+    border: 2px solid #b78845;
+}
+.v-card-inner::before {
+    left: -0.6rem;
+}
+.v-card-inner::after {
+    right: -0.6rem;
+}
+.v-card-front > .v-card-image,
+.v-card-back > .v-card-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.v-card-back {
+    transform: rotateY(180deg);
+    background: white;
+    color: #b78845;
+}
+.v-card-front {
+    color: #b78845;
+    background: #131902;
+}
+.v-card-front,
+.v-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    top: 0;
+    left: 0;
+}
+/* ______________________________________________ */
+.h-card-outer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    position: relative;
+    margin: 0.5rem;
+
+    width: 20rem;
+    height: calc(20rem * 1.727); /*ratio of a tarot card : 2.75 * 4.75in*/
+    padding: 0.5rem;
+    border: 2px solid #b78845;
+
+    perspective: 1000px;
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+}
+.v-card-outer:hover {
+    transform: rotateY(180deg);
+    transition-delay: 0.3s;
+}
+.v-card-inner {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border: 2px solid #b78845;
+    text-align: center;
+    transform-style: preserve-3d;
+}
+.v-card-outer::before,
+.v-card-outer::after {
+    position: absolute;
+    z-index: 900;
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #b78845;
+    top: -0.1rem;
+}
+.v-card-outer::before {
+    left: -0.1rem;
+}
+.v-card-outer::after {
+    right: -0.1rem;
+}
+.v-card-inner::before,
+.v-card-inner::after {
+    z-index: 900;
+    content: "";
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    color: #b78845;
+    bottom: -0.7rem;
+    border: 2px solid #b78845;
+}
+.v-card-inner::before {
+    left: -0.6rem;
+}
+.v-card-inner::after {
+    right: -0.6rem;
+}
+.v-card-front > .v-card-image,
+.v-card-back > .v-card-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.v-card-back {
+    transform: rotateY(180deg);
+    background: white;
+    color: #b78845;
+}
+.v-card-front {
+    color: #b78845;
+    background: #131902;
+}
+.v-card-front,
+.v-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    top: 0;
+    left: 0;
+}
+.base-button {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 20rem;
+    padding: 0.5rem;
+    border: none;
+    font-family: Almendr, Serif;
+    color: #b78845;
+    background-color: transparent;
+    transition: 0.2s smooth;
+}
+
+.base-button::before,
+.base-button::after {
+    content: url("vintage_elements_2_corner_2.svg");
+    height: 1rem;
+    width: 1rem;
+    margin-top: 0.8rem;
+}
+
+.base-button::before {
+    transform: rotate(90deg);
+}
+
+.base-button::after {
+    transform: rotateZ(90deg) rotateY(0deg);
+}
+
+.base-button:hover {
+    border-bottom: 2px solid #b78845;
+}
+
+#products-page {
+    display: flex;
+    gap: 3rem;
+}
+
+.card {
+    /* background-color: hotpink; */
+    height: calc(20rem * 1.727);
+    /* border-radius: 1rem; */
+}
+
+.sparkle-icon {
+    max-height: 3rem;
+}
+
+#nav-bar {
+    margin-bottom: 3rem;
+    background-color: #c0c0c0;
+    max-height: max(5vh, 5rem);
+    padding: 1rem 3rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#nav-bar-user {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+  background: transparent;
+  margin-left: 1.5rem;
+}
+
+
+#nav-bar-user h4,
+#nav-bar-user h5 {
+  color: var(--h3-color);
+  margin: 0;
+}
+
+.bilbo-swash-caps-regular {
+  font-family: "Bilbo Swash Caps", cursive;
+  font-style: normal;
+}
+
+.corinthia-bold {
+  font-family: "Corinthia", cursive;
+  font-style: normal;
+}
+
+#brand {
+    min-width: 30vw;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  min-width: 12rem;
+  list-style: none;
+  opacity: 0;
+  z-index: 200;
+}
+
+.user-dropdown.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.user-dropdown li a {
+  display: block;
+  padding: 0.8rem 1rem;
+  text-decoration: none;
+  font-size: 1rem;
+  letter-spacing: 0.05rem;
+  border: 2px solid hotpink;
+  min-width: 12vw;
+}
+
+
+.dropdown-toggle {
+  font-size: 1.2rem;
+  width: 12vw;
+  height: 2.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dropdown-toggle:focus,
+.dropdown-toggle:active {
+  outline: none;
+  box-shadow: none;
 }

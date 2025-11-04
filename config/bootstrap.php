@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 use DI\ContainerBuilder;
 use Slim\App;
+use App\Helpers\UserContext;
+
+require __DIR__ . '/../vendor/autoload.php';
+UserContext::init(); 
+
 
 require realpath(__DIR__ . '/../vendor/autoload.php');
 
