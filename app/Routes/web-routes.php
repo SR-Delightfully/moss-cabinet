@@ -10,8 +10,21 @@ use App\Helpers\FlashMessage;
 use App\Controllers\FlashDemoController;
 use App\Helpers\SessionManager;
 use App\Controllers\DemoController;
+use App\Controllers\AdminController;
+use App\Controllers\CartController;
+use App\Controllers\CategoiresController;
+use App\Controllers\CategoryController;
+use App\Controllers\CheckoutController;
+use App\Controllers\CollectionsController;
+use App\Controllers\CollectionController;
 use App\Controllers\HomeController;
+use App\Controllers\ProductController;
 use App\Controllers\ProductsController;
+use App\Controllers\ProfileController;
+use App\Controllers\ProfilesController;
+use App\Controllers\SettingsController;
+use App\Controllers\SigninController;
+use App\Controllers\SignupController;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -26,62 +39,65 @@ return static function (Slim\App $app): void {
     $app->get('/home', [HomeController::class, 'index'])
         ->setName('home.index');
 
+    // to view Admin page:
+    $app->get('/admin', [AdminController::class, 'index'])
+        ->setName('admin.index');
 
     // to view Login form:
-    // $app->get('/login', [LoginController::class, 'index'])
-    //     ->setName('login.index');
+    $app->get('/signin', [SigninController::class, 'index'])
+        ->setName('signin.index');
 
     // to view Registration form:
-    // $app->get('/signup', [SignupController::class, 'index'])
-    //     ->setName('signup.index');
+    $app->get('/signup', [SignupController::class, 'index'])
+        ->setName('signup.index');
 
     // to view a list of user profiles:
-    // $app->get('/profiles', [ShopsController::class, 'index'])
+    // $app->get('/profiles', [ProfilesController::class, 'index'])
     //     ->setName('profiles.index');
 
-    // to view a the profile of a single user:
-    // $app->get('/profiles/[profile_id]', [ShopsController::class, 'index'])
+    // // to view a the profile of a single user:
+    // $app->get('/profiles/[profile_id]', [ProfileController::class, 'index'])
     //     ->setName('profile.index');
 
     // to view a list of shops hosted by moss cabinet:
-    // $app->get('/shops', [ShopsController::class, 'index'])
-    //     ->setName('shops.index');
+    // $app->get('/collections', [CollectionsController::class, 'index'])
+    //     ->setName('collectoins.index');
 
-    // to view each shop and display their information and showcase their products:
-    // $app->get('/shops/[shop_id]', [ShopController::class, 'index'])
-    //     ->setName('shop.index');
+    // // to view each shop and display their information and showcase their products:
+    // $app->get('/collections/[collection_id]', [CollectionController::class, 'index'])
+    //     ->setName('collection.index');
 
     // to view all product categories available on moss cabinet
     // $app->get('/categories', [CategoriesController::class, 'index'])
-    //     ->setName('categories.index');
+        // ->setName('categories.index');
 
     // to view all products within a specific category
     // $app->get('/categories/[category_id]', [CategoryController::class, 'index'])
-    //     ->setName('category.index');
+        // ->setName('category.index');
 
     // to view all products available on moss cabinet
     $app->get('/products', [ProductsController::class, 'index'])
         ->setName('products.index');
 
     // to view a single product and its details
-    // $app->get('/products/[product_id]', [ProductController::class, 'index'])
-    //     ->setName('product.index');
+    $app->get('/products/[product_id]', [ProductController::class, 'index'])
+        ->setName('product.index');
 
     // to view the user's cart and a listing of the products inside it.
     // $app->get('/cart', [CartController::class, 'index'])
-    //     ->setName('cart.index');
+        // ->setName('cart.index');
 
-    // to view the checkout form to validate the purchase of the items in the cart.
-    // $app->get('/cart/checkout', [CartCheckoutController::class, 'index'])
-    //     ->setName('checkout.index');
+         // to view the user's cart and a listing of the products inside it.
+    // $app->get('/checkouut', [CheckoutController::class, 'index'])
+        // ->setName('checkout.index');
 
+    // Runtime error handling and custom exceptions.
+    $app->get('/error', function (Request $request, Response $response, $args) {
+        throw new \Slim\Exception\HttpNotFoundException($request, "Something went wrong");
+    });
 
-
-    // A route to test runtime error handling and custom exceptions.
-    // $app->get('/error', function (Request $request, Response $response, $args) {
-    //     throw new \Slim\Exception\HttpNotFoundException($request, "Something went wrong");
-    // });
-
+    //______________________________________________________________________________________________________
+    
     $app->get('/demo/counter', [DemoController::class, 'counter'])->setName('demo.counter');
     $app->post('/demo/reset', [DemoController::class, 'resetCounter'])->setName('demo.reset');
 
