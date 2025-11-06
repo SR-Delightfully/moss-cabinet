@@ -29,6 +29,33 @@ return static function (Slim\App $app): void {
     $app -> get ('/products/edit', [ProductController::class, 'edit']);
 
 
+    //* Name the routes (setName('')) to help with redirection later
+    //? Admin routes group:
+    //* Base URI: localhost/3d-models-app/admin
+    $app->group('/admin', function ($group) {
+        //Add/register admin routes
+        $group->get(
+            '/dashboard',
+            [DashboardController::class, 'index']
+        )->setName('dashboard.index');
+
+
+        $group->get(
+            '/products',
+            [ProductsController::class, 'index']
+        )->setName('products.index');
+
+        $group->get(
+            '/products/edit',
+            [ProductsController::class, 'edit']
+        );
+
+        $group->get(
+            '/categories',
+            [ProductsController::class, 'index']
+        )->setName('categories.index');
+    });
+
     // to view Login form:
     // $app->get('/login', [LoginController::class, 'index'])
     //     ->setName('login.index');
