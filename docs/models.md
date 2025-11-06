@@ -4,7 +4,8 @@ This guide demonstrates how to use the BaseModel class and its PDO wrapper metho
 
 ## Overview
 
-The `BaseModel` class provides a set of convenient methods for database operations using prepared statements. All methods use named or positional parameters for security against SQL injection.
+The `BaseModel` class provides a set of convenient methods for database operations using prepared statements. All
+methods use named or positional parameters for security against SQL injection.
 
 ## Basic Model Creation
 
@@ -329,6 +330,7 @@ class UserModel extends BaseModel
 ## Best Practices
 
 ### 1. Use Named Parameters
+
 Prefer named parameters over positional parameters for better readability:
 
 ```php
@@ -343,6 +345,7 @@ $this->selectOne('SELECT * FROM users WHERE email = ? AND status = ?', [$email, 
 ```
 
 ### 2. Validate Input
+
 Always validate input before using in queries:
 
 ```php
@@ -357,6 +360,7 @@ public function findById(int $id): array|false
 ```
 
 ### 3. Use Transactions for Multiple Operations
+
 Wrap related database operations in transactions:
 
 ```php
@@ -384,6 +388,7 @@ public function registerUserWithProfile(array $userData, array $profileData): st
 ```
 
 ### 4. Handle Errors Gracefully
+
 Always handle potential database errors:
 
 ```php
