@@ -12,7 +12,7 @@ use App\Helpers\SessionManager;
 use App\Controllers\DemoController;
 use App\Controllers\AdminController;
 use App\Controllers\CartController;
-use App\Controllers\CategoiresController;
+use App\Controllers\CategoriesController;
 use App\Controllers\CategoryController;
 use App\Controllers\CheckoutController;
 use App\Controllers\CollectionsController;
@@ -52,28 +52,28 @@ return static function (Slim\App $app): void {
         ->setName('signup.index');
 
     // to view a list of user profiles:
-    // $app->get('/profiles', [ProfilesController::class, 'index'])
-    //     ->setName('profiles.index');
+    $app->get('/profiles', [ProfilesController::class, 'index'])
+        ->setName('profiles.index');
 
     // // to view a the profile of a single user:
-    // $app->get('/profiles/[profile_id]', [ProfileController::class, 'index'])
-    //     ->setName('profile.index');
+    $app->get('/profiles/[profile_id]', [ProfileController::class, 'index'])
+        ->setName('profile.index');
 
     // to view a list of shops hosted by moss cabinet:
-    // $app->get('/collections', [CollectionsController::class, 'index'])
-    //     ->setName('collectoins.index');
+    $app->get('/collections', [CollectionsController::class, 'index'])
+        ->setName('collections.index');
 
     // // to view each shop and display their information and showcase their products:
-    // $app->get('/collections/[collection_id]', [CollectionController::class, 'index'])
-    //     ->setName('collection.index');
+    $app->get('/collections/[collection_id]', [CollectionController::class, 'index'])
+        ->setName('collection.index');
 
     // to view all product categories available on moss cabinet
-    // $app->get('/categories', [CategoriesController::class, 'index'])
-        // ->setName('categories.index');
+    $app->get('/categories', [CategoriesController::class, 'index'])
+        ->setName('categories.index');
 
     // to view all products within a specific category
-    // $app->get('/categories/[category_id]', [CategoryController::class, 'index'])
-        // ->setName('category.index');
+    $app->get('/categories/[category_id]', [CategoryController::class, 'index'])
+        ->setName('category.index');
 
     // to view all products available on moss cabinet
     $app->get('/products', [ProductsController::class, 'index'])
@@ -84,12 +84,16 @@ return static function (Slim\App $app): void {
         ->setName('product.index');
 
     // to view the user's cart and a listing of the products inside it.
-    // $app->get('/cart', [CartController::class, 'index'])
-        // ->setName('cart.index');
+    $app->get('/cart', [CartController::class, 'index'])
+        ->setName('cart.index');
 
-         // to view the user's cart and a listing of the products inside it.
-    // $app->get('/checkouut', [CheckoutController::class, 'index'])
-        // ->setName('checkout.index');
+    // to view the user's cart and a listing of the products inside it.
+    $app->get('/checkout', [CheckoutController::class, 'index'])
+        ->setName('checkout.index');
+
+    // to view Settings form:
+    $app->get('/settings', [SettingsController::class, 'index'])
+        ->setName('settings.index');
 
     // Runtime error handling and custom exceptions.
     $app->get('/error', function (Request $request, Response $response, $args) {

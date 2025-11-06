@@ -1,23 +1,41 @@
 <?php
+
+declare(strict_types=1);
+
 namespace App\Controllers;
 
-use App\Helpers\UserContext;
+use DI\Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class ProfileController
+class ProfilesController extends BaseController
 {
-    public function view(Request $request, Response $response): Response
+    //NOTE: Passing the entire container violates the Dependency Inversion Principle and creates a service locator anti-pattern.
+    // However, it is a simple and effective way to pass the container to the controller given the small scope of the application and the fact that this application is to be used in a classroom setting where students are not yet familiar with the Dependency Inversion Principle.
+    public function __construct(Container $container)
     {
-        $user = UserContext::getCurrentUser();
+        parent::__construct($container);
+    }
 
-        if (!$user) {
-            return $response
-                ->withHeader('Location', '/login')
-                ->withStatus(302);
-        }
+    public function index(Request $request, Response $response, array $args): Response
+    {
+        //$data['flash'] = $this->flash->getFlashMessage();
+        //echo $data['message'] ;exit;
 
-        $response->getBody()->write("Welcome, {$user['user_fname']}!");
-        return $response;
+
+        $data['data'] = [
+            'title' => 'Profiles',
+            'message' => 'Welcome to the profiles page',
+        ];
+
+        //dd($data);
+        //var_dump($this->session); exit;
+        return $this->render($response, 'profilesView.php', $data);
+    }
+
+    public function error(Request $request, Response $response, array $args): Response
+    {
+
+        return $this->render($response, 'errorView.php');
     }
 }

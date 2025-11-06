@@ -13,7 +13,7 @@ class ProfileController
 
         if (!$user) {
             return $response
-                ->withHeader('Location', '/login')
+                ->withHeader('Location', '/signin')
                 ->withStatus(302);
         }
 

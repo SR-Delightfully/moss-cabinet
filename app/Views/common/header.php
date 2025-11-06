@@ -26,8 +26,9 @@ $currentUser = UserContext::getCurrentUser();
             <img class="sparkle-icon" src="https://svgsilh.com/svg/35893.svg">
             <div id="nav-bar-content" class="display-flex-row">
                 <ul id="nav-tabs" class="display-flex-row border-2">
-                    <li class="nav-tab"><a href="about">W<i>ho</i> A<i>re</i> W<i>e</i></a></li>
-                    <li class="nav-tab"><a href="shops">O<i>ur</i> C<i>ollections</i></a></li>
+                    <!-- <li class="nav-tab"><a href="about">W<i>ho</i> A<i>re</i> W<i>e</i></a></li> -->
+                    <li class="nav-tab"><a href="collections">O<i>ur</i> C<i>ollections</i></a></li>
+                    <li class="nav-tab"><a href="categories">O<i>ur</i> C<i>ategories</i></a></li>
                     <li class="nav-tab"><a href="products">O<i>ur</i> P<i>roducts</i></a></li>
                 </ul>
                 <div id="nav-bar-user" class=" display-flex-col">
@@ -52,8 +53,8 @@ $currentUser = UserContext::getCurrentUser();
                     <h5>Merry meet, Anonymous one!</h5>
                     <button class="dropdown-toggle" id="drop-down">User dropdown</button>
                     <ul class="user-dropdown">
-                        <li><a href="login.php">Login</a></li>
-                        <li><a href="signup.php">Sign Up</a></li>
+                        <li><a href="signin">Sign in!</a></li>
+                        <li><a href="signup">Sign up!</a></li>
                     </ul>
                 <?php endif; ?>
             </div>    
