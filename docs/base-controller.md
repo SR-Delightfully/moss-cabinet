@@ -4,7 +4,8 @@ This guide demonstrates how to use the BaseController class methods in your Slim
 
 ## Overview
 
-The `BaseController` class provides foundational functionality for all controllers in the application. It handles dependency injection, view rendering, and HTTP redirects with a focus on educational clarity and simplicity.
+The `BaseController` class provides foundational functionality for all controllers in the application. It handles
+dependency injection, view rendering, and HTTP redirects with a focus on educational clarity and simplicity.
 
 ## Class Structure
 
@@ -67,11 +68,13 @@ class UserController extends BaseController
 The `render()` method processes view templates and returns HTTP responses with proper headers.
 
 **Method Signature:**
+
 ```php
 protected function render(Response $response, string $view_name, array $data = []): Response
 ```
 
 **Parameters:**
+
 - `$response` - PSR-7 response object to modify
 - `$view_name` - Name of the view template file
 - `$data` - Associative array of data to pass to the template
@@ -79,6 +82,7 @@ protected function render(Response $response, string $view_name, array $data = [
 **Examples:**
 
 #### Basic View Rendering
+
 ```php
 public function index(Request $request, Response $response, array $args): Response
 {
@@ -87,6 +91,7 @@ public function index(Request $request, Response $response, array $args): Respon
 ```
 
 #### Passing Data to Views
+
 ```php
 public function show(Request $request, Response $response, array $args): Response
 {
@@ -106,6 +111,7 @@ public function show(Request $request, Response $response, array $args): Respons
 ```
 
 #### Complex Data Structures
+
 ```php
 public function dashboard(Request $request, Response $response, array $args): Response
 {
@@ -131,6 +137,7 @@ public function dashboard(Request $request, Response $response, array $args): Re
 ```
 
 #### Conditional Rendering
+
 ```php
 public function profile(Request $request, Response $response, array $args): Response
 {
@@ -156,6 +163,7 @@ public function profile(Request $request, Response $response, array $args): Resp
 The `redirect()` method creates HTTP redirect responses to named routes with support for parameters and query strings.
 
 **Method Signature:**
+
 ```php
 protected function redirect(
     Request $request, 
@@ -167,6 +175,7 @@ protected function redirect(
 ```
 
 **Parameters:**
+
 - `$request` - PSR-7 request object for route context
 - `$response` - PSR-7 response object to modify
 - `$route_name` - Named route to redirect to (e.g., 'user.profile', 'articles.index')
@@ -182,6 +191,7 @@ protected function redirect(
 **Examples:**
 
 #### Basic Redirect (No Parameters)
+
 ```php
 public function logout(Request $request, Response $response, array $args): Response
 {
@@ -194,6 +204,7 @@ public function logout(Request $request, Response $response, array $args): Respo
 ```
 
 #### Redirect with Route Parameters
+
 ```php
 // For route: /users/{id}
 public function updateProfile(Request $request, Response $response, array $args): Response
@@ -209,6 +220,7 @@ public function updateProfile(Request $request, Response $response, array $args)
 ```
 
 #### Redirect with Query Parameters Only
+
 ```php
 // For route: /search (no placeholders)
 public function search(Request $request, Response $response, array $args): Response
@@ -231,6 +243,7 @@ public function search(Request $request, Response $response, array $args): Respo
 ```
 
 #### Redirect with Both Route Parameters and Query Strings
+
 ```php
 // For route: /users/{id}/edit
 public function editUser(Request $request, Response $response, array $args): Response
@@ -263,6 +276,7 @@ public function editUser(Request $request, Response $response, array $args): Res
 ```
 
 #### Post-Redirect-Get Pattern
+
 ```php
 public function createUser(Request $request, Response $response, array $args): Response
 {
@@ -291,6 +305,7 @@ public function createUser(Request $request, Response $response, array $args): R
 ## Complete Controller Examples
 
 ### Simple CRUD Controller
+
 ```php
 <?php
 
@@ -385,6 +400,7 @@ class ArticleController extends BaseController
 ## Best Practices
 
 ### 1. Data Validation
+
 Always validate data before passing to views:
 
 ```php
@@ -402,6 +418,7 @@ public function userProfile(Request $request, Response $response, array $args): 
 ```
 
 ### 2. Error Handling
+
 Handle errors gracefully with appropriate redirects:
 
 ```php
@@ -419,6 +436,7 @@ public function processForm(Request $request, Response $response, array $args): 
 ```
 
 ### 3. Consistent Naming
+
 Use descriptive view names that match your controller actions:
 
 ```php
@@ -431,6 +449,7 @@ return $this->render($response, 'page1.php', $data);
 ```
 
 ### 4. Data Structure
+
 Organize view data logically:
 
 ```php

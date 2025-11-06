@@ -67,6 +67,7 @@
     --h6-color: var(--tone-06);
     --hr-color: var(--tone-08);
 }
+
 :root[data-theme="lights-on"] {
     --background-color: var(--tone-08);
     --body-color: var(--tone-08);
@@ -87,30 +88,38 @@ body {
     box-sizing: border-box;
     background-color: var(--body-color);
 }
+
 img {
     max-width: 20vw;
 }
+
 h1 {
     color: var(--h1-color);
 }
+
 h2 {
     color: var(--h2-color);
 }
+
 h3 {
     color: var(--h3-color);
 }
+
 h4 {
     color: var(--h4-color);
 }
+
 h5 {
     color: var(--h5-color);
 }
+
 h6 {
     color: var(--h6-color);
 }
 
 ul {
     list-style: none;
+
     & > li {
         margin: none;
         padding: none;
@@ -133,6 +142,7 @@ ul {
     flex-flow: row nowrap;
     gap: 3rem;
 }
+
 .display-flex-col {
     display: flex;
     flex-flow: column nowrap;
@@ -142,19 +152,24 @@ ul {
 .rounded-border-3 {
     border-radius: 2rem;
 }
+
 .rounded-border-2 {
     border-radius: 1rem;
 }
+
 .rounded-border-1 {
     border-radius: 0.5rem;
 }
+
 /* Border styles */
 .border-3 {
     border: 3px solid hotpink;
 }
+
 .border-2 {
     border: 2px solid hotpink;
 }
+
 .border-1 {
     border: 1dvi solid hotpink;
 }
@@ -215,10 +230,12 @@ ul {
     transition: transform 0.6s ease;
     transform-style: preserve-3d;
 }
+
 .v-card-outer:hover {
     transform: rotateY(180deg);
     transition-delay: 0.3s;
 }
+
 .v-card-inner {
     position: relative;
     height: 100%;
@@ -227,6 +244,7 @@ ul {
     text-align: center;
     transform-style: preserve-3d;
 }
+
 .v-card-outer::before,
 .v-card-outer::after {
     position: absolute;
@@ -237,12 +255,15 @@ ul {
     border: 2px solid #b78845;
     top: -0.1rem;
 }
+
 .v-card-outer::before {
     left: -0.1rem;
 }
+
 .v-card-outer::after {
     right: -0.1rem;
 }
+
 .v-card-inner::before,
 .v-card-inner::after {
     z-index: 900;
@@ -254,12 +275,15 @@ ul {
     bottom: -0.7rem;
     border: 2px solid #b78845;
 }
+
 .v-card-inner::before {
     left: -0.6rem;
 }
+
 .v-card-inner::after {
     right: -0.6rem;
 }
+
 .v-card-front > .v-card-image,
 .v-card-back > .v-card-image {
     object-fit: cover;
@@ -270,15 +294,18 @@ ul {
     left: 0;
     z-index: -1;
 }
+
 .v-card-back {
     transform: rotateY(180deg);
     background: white;
     color: #b78845;
 }
+
 .v-card-front {
     color: #b78845;
     background: #131902;
 }
+
 .v-card-front,
 .v-card-back {
     position: absolute;
@@ -289,6 +316,7 @@ ul {
     top: 0;
     left: 0;
 }
+
 /* ______________________________________________ */
 .h-card-outer {
     display: flex;
@@ -307,10 +335,12 @@ ul {
     transition: transform 0.6s ease;
     transform-style: preserve-3d;
 }
+
 .v-card-outer:hover {
     transform: rotateY(180deg);
     transition-delay: 0.3s;
 }
+
 .v-card-inner {
     position: relative;
     height: 100%;
@@ -319,6 +349,7 @@ ul {
     text-align: center;
     transform-style: preserve-3d;
 }
+
 .v-card-outer::before,
 .v-card-outer::after {
     position: absolute;
@@ -329,12 +360,15 @@ ul {
     border: 2px solid #b78845;
     top: -0.1rem;
 }
+
 .v-card-outer::before {
     left: -0.1rem;
 }
+
 .v-card-outer::after {
     right: -0.1rem;
 }
+
 .v-card-inner::before,
 .v-card-inner::after {
     z-index: 900;
@@ -346,12 +380,15 @@ ul {
     bottom: -0.7rem;
     border: 2px solid #b78845;
 }
+
 .v-card-inner::before {
     left: -0.6rem;
 }
+
 .v-card-inner::after {
     right: -0.6rem;
 }
+
 .v-card-front > .v-card-image,
 .v-card-back > .v-card-image {
     object-fit: cover;
@@ -362,15 +399,18 @@ ul {
     left: 0;
     z-index: -1;
 }
+
 .v-card-back {
     transform: rotateY(180deg);
     background: white;
     color: #b78845;
 }
+
 .v-card-front {
     color: #b78845;
     background: #131902;
 }
+
 .v-card-front,
 .v-card-back {
     position: absolute;
@@ -381,6 +421,7 @@ ul {
     top: 0;
     left: 0;
 }
+
 .base-button {
     display: flex;
     flex-flow: row nowrap;
@@ -438,30 +479,30 @@ ul {
 }
 
 #nav-bar-user {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.25rem;
-  background: transparent;
-  margin-left: 1.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+    background: transparent;
+    margin-left: 1.5rem;
 }
 
 
 #nav-bar-user h4,
 #nav-bar-user h5 {
-  color: var(--h3-color);
-  margin: 0;
+    color: var(--h3-color);
+    margin: 0;
 }
 
 .bilbo-swash-caps-regular {
-  font-family: "Bilbo Swash Caps", cursive;
-  font-style: normal;
+    font-family: "Bilbo Swash Caps", cursive;
+    font-style: normal;
 }
 
 .corinthia-bold {
-  font-family: "Corinthia", cursive;
-  font-style: normal;
+    font-family: "Corinthia", cursive;
+    font-style: normal;
 }
 
 #brand {
@@ -469,43 +510,43 @@ ul {
 }
 
 .user-dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  margin-top: 0.5rem;
-  min-width: 12rem;
-  list-style: none;
-  opacity: 0;
-  z-index: 200;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    min-width: 12rem;
+    list-style: none;
+    opacity: 0;
+    z-index: 200;
 }
 
 .user-dropdown.open {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: all;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
 }
 
 .user-dropdown li a {
-  display: block;
-  padding: 0.8rem 1rem;
-  text-decoration: none;
-  font-size: 1rem;
-  letter-spacing: 0.05rem;
-  border: 2px solid hotpink;
-  min-width: 12vw;
+    display: block;
+    padding: 0.8rem 1rem;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 0.05rem;
+    border: 2px solid hotpink;
+    min-width: 12vw;
 }
 
 
 .dropdown-toggle {
-  font-size: 1.2rem;
-  width: 12vw;
-  height: 2.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+    font-size: 1.2rem;
+    width: 12vw;
+    height: 2.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .dropdown-toggle:focus,
 .dropdown-toggle:active {
-  outline: none;
-  box-shadow: none;
+    outline: none;
+    box-shadow: none;
 }

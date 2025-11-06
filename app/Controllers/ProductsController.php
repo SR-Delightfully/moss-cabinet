@@ -33,6 +33,9 @@ class ProductsController extends BaseController
         return $this->render($response, 'ProductsView.php', $data);
     }
 
+    public function edit (Request $request, Response $response, array $args): Response {
+    }
+
     public function error(Request $request, Response $response, array $args): Response
     {
 
