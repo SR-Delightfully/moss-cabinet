@@ -436,7 +436,7 @@ ul {
 
 .base-button::before,
 .base-button::after {
-    content: url("vintage_elements_2_corner_2.svg");
+    /*content: url("vintage_elements_2_corner_2.svg");*/
     height: 1rem;
     width: 1rem;
     margin-top: 0.8rem;
