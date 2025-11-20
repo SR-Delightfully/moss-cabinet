@@ -1,3 +1,4 @@
+<!-- ? Can we delete this file if we have the DashboardController? -->
 <?php
 
 declare(strict_types=1);
@@ -17,12 +18,17 @@ class AdminController extends BaseController
 
     public function index(Request $request, Response $response, array $args): Response
     {
-        $data['data'] = [
-            'title' => 'Admin',
-            'message' => 'Welcome to the admin page',
+          $data = [
+            'page_title' => "Welcome to Moss Cabinet's admin dashboard",
+            'contentView' => APP_VIEWS_PATH . 'admin/dashboardView.php',
+            'isNavBarShown' => true,
+            'data' => [
+                'title' => 'Admin dashboard',
+                'message' => "dashboard",
+            ]
         ];
 
-        return $this->render($response, 'adminView.php', $data);
+        return $this->render($response, 'common/layout.php', $data);
     }
 
     public function error(Request $request, Response $response, array $args): Response

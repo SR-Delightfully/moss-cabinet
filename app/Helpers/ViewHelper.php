@@ -19,6 +19,12 @@ class ViewHelper
         require_once APP_VIEWS_PATH . '/common/header.php';
     }
 
+    public static function loadAdminHeader(string $page_title): void
+    {
+        $page_title =  $page_title ?? 'Default Title';
+        require_once APP_VIEWS_PATH . '/admin/AdminHeader.php';
+    }
+
     /**
      * Load the common JavaScript scripts for the page.
      *
@@ -35,6 +41,11 @@ class ViewHelper
      * @return void
      */
     public static function loadFooter(): void
+    {
+        require_once APP_VIEWS_PATH . '/common/footer.php';
+    }
+
+    public static function loadAdminFooter(): void
     {
         require_once APP_VIEWS_PATH . '/common/footer.php';
     }
@@ -89,5 +100,11 @@ class ViewHelper
         }
 
         return $options;
+    }
+
+     public static function loadNavBar(): void
+    {
+       
+        require_once APP_VIEWS_PATH . '/common/navbar.php';
     }
 }

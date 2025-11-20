@@ -17,12 +17,16 @@ class SignupController extends BaseController
 
     public function index(Request $request, Response $response, array $args): Response
     {
-        $data['data'] = [
-            'title' => 'Signup',
-            'message' => 'Welcome to the signup page',
+        $data = [
+            'isNavBarShown' => false,
+            'contentView' => APP_VIEWS_PATH . '/auth/signupView.php',
+            'data' => [
+                'title' => 'Signup',
+                'message' => 'Welcome to the signup page',
+            ]
         ];
 
-        return $this->render($response, 'signupView.php', $data);
+        return $this->render($response, 'common/layout.php', $data);
     }
 
     public function error(Request $request, Response $response, array $args): Response

@@ -488,7 +488,6 @@ ul {
     margin-left: 1.5rem;
 }
 
-
 #nav-bar-user h4,
 #nav-bar-user h5 {
     color: var(--h3-color);
@@ -535,7 +534,6 @@ ul {
     border: 2px solid hotpink;
     min-width: 12vw;
 }
-
 
 .dropdown-toggle {
     font-size: 1.2rem;

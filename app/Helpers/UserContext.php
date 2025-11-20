@@ -21,6 +21,7 @@ class UserContext
 
     public static function login(array $userData): void
     {
+        $userData['user_role'] = $userData['user_role'] ?? 'customer';
         $_SESSION['currentUser'] = $userData;
     }
 
@@ -34,19 +35,18 @@ class UserContext
         return !empty($_SESSION['currentUser']);
     }
 
-    // Optional extras mirroring your React logic
-    public static function addToCart(int $itemId): void
+    public static function getRole(): ?string
     {
-        $_SESSION['cart'][$itemId] = ($_SESSION['cart'][$itemId] ?? 0) + 1;
+        return $_SESSION['currentUser']['user_role'] ?? null;
     }
 
-    public static function removeFromCart(int $itemId): void
+    public static function isAdmin(): bool
     {
-        unset($_SESSION['cart'][$itemId]);
+        return self::getRole() === 'admin';
     }
 
-    public static function getCart(): array
+    public static function isCustomer(): bool
     {
-        return $_SESSION['cart'] ?? [];
+        return self::getRole() === 'customer';
     }
 }

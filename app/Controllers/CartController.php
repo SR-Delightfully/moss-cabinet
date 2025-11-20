@@ -19,18 +19,17 @@ class CartController extends BaseController
 
     public function index(Request $request, Response $response, array $args): Response
     {
-        //$data['flash'] = $this->flash->getFlashMessage();
-        //echo $data['message'] ;exit;
-
-
-        $data['data'] = [
-            'title' => 'Cart',
-            'message' => 'Welcome to the categories page',
+        $data = [
+            'page_title' => 'Welcome to Moss Cabinets cart page',
+            'contentView' => APP_VIEWS_PATH . '/cartView.php',
+            'isNavBarShown' => true,
+            'data' => [
+                'title' => 'Cart',
+                'message' => "cart",
+            ]
         ];
 
-        //dd($data);
-        //var_dump($this->session); exit;
-        return $this->render($response, 'cartView.php', $data);
+        return $this->render($response, 'common/layout.php', $data);
     }
 
     public function error(Request $request, Response $response, array $args): Response

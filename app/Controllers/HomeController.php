@@ -19,23 +19,21 @@ class HomeController extends BaseController
 
     public function index(Request $request, Response $response, array $args): Response
     {
-        //$data['flash'] = $this->flash->getFlashMessage();
-        //echo $data['message'] ;exit;
-
-
-        $data['data'] = [
-            'title' => 'Home',
-            'message' => 'Welcome to the home page',
+        $data = [
+            'page_title' => 'Welcome to Moss Cabinet',
+            'contentView' => APP_VIEWS_PATH . '/homeView.php',
+            'isNavBarShown' => true,
+            'data' => [
+                'title' => 'Home',
+                'message' => "Home",
+            ]
         ];
 
-        //dd($data);
-        //var_dump($this->session); exit;
-        return $this->render($response, 'homeView.php', $data);
+        return $this->render($response, 'common/layout.php', $data);
     }
 
     public function error(Request $request, Response $response, array $args): Response
     {
-
         return $this->render($response, 'errorView.php');
     }
 }

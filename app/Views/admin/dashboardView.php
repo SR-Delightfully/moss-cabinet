@@ -40,7 +40,7 @@ ViewHelper::loadAdminHeader($page_title);
         height="380"></canvas>
     <h2>Section title</h2>
     <div class="table-responsive small">
-        <table class="table table-striped table-sm">
+        <table id="example-table">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -48,6 +48,7 @@ ViewHelper::loadAdminHeader($page_title);
                     <th scope="col">Header</th>
                     <th scope="col">Header</th>
                     <th scope="col">Header</th>
+                    <th scope="col">Image</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,6 +58,13 @@ ViewHelper::loadAdminHeader($page_title);
                     <td>data</td>
                     <td>placeholder</td>
                     <td>text</td>
+                    <td>
+                        <form action="/upload" method="POST" enctype="multipart/form-data">
+                            <label for="upload-example">Select a file to upload:</label>
+                            <input type="file" name="upload-example" id="upload-example">
+                            <input type="submit" value="Upload File">
+                        </form>
+                    </td>
                 </tr>
                 <tr>
                     <td>1,002</td>
@@ -64,6 +72,13 @@ ViewHelper::loadAdminHeader($page_title);
                     <td>irrelevant</td>
                     <td>visual</td>
                     <td>layout</td>
+                    <td>
+                        <form action="/upload" method="POST" enctype="multipart/form-data">
+                            <label for="upload-example">Select a file to upload:</label>
+                            <input type="file" name="upload-example" id="upload-example">
+                            <input type="submit" value="Upload File">
+                        </form>
+                    </td>
                 </tr>
                 <tr>
                     <td>1,003</td>
@@ -71,6 +86,13 @@ ViewHelper::loadAdminHeader($page_title);
                     <td>rich</td>
                     <td>dashboard</td>
                     <td>tabular</td>
+                    <td>
+                        <form action="/upload" method="POST" enctype="multipart/form-data">
+                            <label for="upload-example">Select a file to upload:</label>
+                            <input type="file" name="upload-example" id="upload-example">
+                            <input type="submit" value="Upload File">
+                        </form>
+                    </td>
                 </tr>
                 <tr>
                     <td>1,003</td>
@@ -78,6 +100,13 @@ ViewHelper::loadAdminHeader($page_title);
                     <td>placeholder</td>
                     <td>illustrative</td>
                     <td>data</td>
+                    <td>
+                        <form action="/upload" method="POST" enctype="multipart/form-data">
+                            <label for="upload-example">Select a file to upload:</label>
+                            <input type="file" name="upload-example" id="upload-example">
+                            <input type="submit" value="Upload File">
+                        </form>
+                    </td>
                 </tr>
                 <tr>
                     <td>1,004</td>
@@ -85,6 +114,13 @@ ViewHelper::loadAdminHeader($page_title);
                     <td>random</td>
                     <td>layout</td>
                     <td>dashboard</td>
+                    <td>
+                        <form action="/upload" method="POST" enctype="multipart/form-data">
+                            <label for="upload-example">Select a file to upload:</label>
+                            <input type="file" name="upload-example" id="upload-example">
+                            <input type="submit" value="Upload File">
+                        </form>
+                    </td>
                 </tr>
                 <tr>
                     <td>1,005</td>
@@ -92,6 +128,13 @@ ViewHelper::loadAdminHeader($page_title);
                     <td>irrelevant</td>
                     <td>text</td>
                     <td>placeholder</td>
+                    <td>
+                        <form action="/upload" method="POST" enctype="multipart/form-data">
+                            <label for="upload-example">Select a file to upload:</label>
+                            <input type="file" name="upload-example" id="upload-example">
+                            <input type="submit" value="Upload File">
+                        </form>
+                    </td>
                 </tr>
                 <tr>
                     <td>1,006</td>
@@ -99,6 +142,13 @@ ViewHelper::loadAdminHeader($page_title);
                     <td>illustrative</td>
                     <td>rich</td>
                     <td>data</td>
+                    <td>
+                        <form action="/upload" method="POST" enctype="multipart/form-data">
+                            <label for="upload-example">Select a file to upload:</label>
+                            <input type="file" name="upload-example" id="upload-example">
+                            <input type="submit" value="Upload File">
+                        </form>
+                    </td>
                 </tr>
                 <tr>
                     <td>1,007</td>
@@ -106,6 +156,13 @@ ViewHelper::loadAdminHeader($page_title);
                     <td>tabular</td>
                     <td>information</td>
                     <td>irrelevant</td>
+                    <td>
+                        <form action="/upload" method="POST" enctype="multipart/form-data">
+                            <label for="upload-example">Select a file to upload:</label>
+                            <input type="file" name="upload-example" id="upload-example">
+                            <input type="submit" value="Upload File">
+                        </form>
+                    </td>
                 </tr>
                 <tr>
                     <td>1,008</td>
@@ -113,6 +170,13 @@ ViewHelper::loadAdminHeader($page_title);
                     <td>data</td>
                     <td>placeholder</td>
                     <td>text</td>
+                    <td>
+                        <form action="/upload" method="POST" enctype="multipart/form-data">
+                            <label for="upload-example">Select a file to upload:</label>
+                            <input type="file" name="upload-example" id="upload-example">
+                            <input type="submit" value="Upload File">
+                        </form>
+                    </td>
                 </tr>
                 <tr>
                     <td>1,009</td>
@@ -120,6 +184,13 @@ ViewHelper::loadAdminHeader($page_title);
                     <td>irrelevant</td>
                     <td>visual</td>
                     <td>layout</td>
+                    <td>
+                        <form action="/upload" method="POST" enctype="multipart/form-data">
+                            <label for="upload-example">Select a file to upload:</label>
+                            <input type="file" name="upload-example" id="upload-example">
+                            <input type="submit" value="Upload File">
+                        </form>
+                    </td>
                 </tr>
                 <tr>
                     <td>1,010</td>
@@ -127,6 +198,13 @@ ViewHelper::loadAdminHeader($page_title);
                     <td>rich</td>
                     <td>dashboard</td>
                     <td>tabular</td>
+                    <td>
+                        <form action="/upload" method="POST" enctype="multipart/form-data">
+                            <label for="upload-example">Select a file to upload:</label>
+                            <input type="file" name="upload-example" id="upload-example">
+                            <input type="submit" value="Upload File">
+                        </form>
+                    </td>
                 </tr>
                 <tr>
                     <td>1,011</td>
@@ -134,6 +212,13 @@ ViewHelper::loadAdminHeader($page_title);
                     <td>placeholder</td>
                     <td>illustrative</td>
                     <td>data</td>
+                    <td>
+                        <form action="/upload" method="POST" enctype="multipart/form-data">
+                            <label for="upload-example">Select a file to upload:</label>
+                            <input type="file" name="upload-example" id="upload-example">
+                            <input type="submit" value="Upload File">
+                        </form>
+                    </td>
                 </tr>
                 <tr>
                     <td>1,012</td>
@@ -148,6 +233,13 @@ ViewHelper::loadAdminHeader($page_title);
                     <td>irrelevant</td>
                     <td>text</td>
                     <td>visual</td>
+                    <td>
+                        <form action="/upload" method="POST" enctype="multipart/form-data">
+                            <label for="upload-example">Select a file to upload:</label>
+                            <input type="file" name="upload-example" id="upload-example">
+                            <input type="submit" value="Upload File">
+                        </form>
+                    </td>
                 </tr>
                 <tr>
                     <td>1,014</td>
@@ -155,6 +247,13 @@ ViewHelper::loadAdminHeader($page_title);
                     <td>illustrative</td>
                     <td>rich</td>
                     <td>data</td>
+                    <td>
+                        <form action="/upload" method="POST" enctype="multipart/form-data">
+                            <label for="upload-example">Select a file to upload:</label>
+                            <input type="file" name="upload-example" id="upload-example">
+                            <input type="submit" value="Upload File">
+                        </form>
+                    </td>
                 </tr>
                 <tr>
                     <td>1,015</td>
@@ -162,6 +261,13 @@ ViewHelper::loadAdminHeader($page_title);
                     <td>tabular</td>
                     <td>information</td>
                     <td>text</td>
+                    <td>
+                        <form action="/upload" method="POST" enctype="multipart/form-data">
+                            <label for="upload-example">Select a file to upload:</label>
+                            <input type="file" name="upload-example" id="upload-example">
+                            <input type="submit" value="Upload File">
+                        </form>
+                    </td>
                 </tr>
             </tbody>
         </table>
