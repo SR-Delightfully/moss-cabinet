@@ -1,7 +1,7 @@
 <?php
 return [
     'navbar_content' => [
-        'admin-panel' => 'Administration',
+        'admin' => 'Administration',
         'collections' => 'N<i>otre</i> C<i>ollections</i>',
         'categories' => 'N<i>otre Catégories</i>',
         'products' => 'N<i>otre Produits</i>',

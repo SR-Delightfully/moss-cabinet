@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 use App\Helpers\FlashMessage;
 use App\Controllers\FlashDemoController;
+use App\Controllers\AuthController;
 use App\Helpers\SessionManager;
 use App\Controllers\DemoController;
 use App\Controllers\AdminController;
@@ -25,8 +26,6 @@ use App\Controllers\ProductsController;
 use App\Controllers\ProfileController;
 use App\Controllers\ProfilesController;
 use App\Controllers\SettingsController;
-use App\Controllers\SigninController;
-use App\Controllers\SignupController;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -52,7 +51,7 @@ return static function (Slim\App $app): void {
         $group->get('', [DashboardController::class, 'index'])->setName('dashboard.index');
         $group->get('/', [DashboardController::class, 'index'])->setName('dashboard.index');
         $group->get('/users', [UsersController::class, 'index'])->setName('products.index');
-        $group->get('/products', [ProductsController::class, 'index'])->setName('products.index');
+        $group->get('/products', [ProductsController::class, 'adminIndex'])->setName('admin.products.index');
         $group->post('/products/create', [ProductsController::class, 'createProduct']);
         $group->get('/products/edit', [ProductsController::class, 'editProduct']);
         $group->get('/categories', [CategoriesController::class, 'index'])->setName('categories.index');
@@ -60,13 +59,26 @@ return static function (Slim\App $app): void {
     });
     // To be added once AdminAuthMiddleware is implemented.
     // })->add(AdminAuthMiddleware::class);
-    // to view Login form:
-    $app->get('/sign-in', [SigninController::class, 'index'])
-        ->setName('signin.index');
 
-    // to view Registration form:
-    $app->get('/sign-up', [AuthController::class, 'showSignupForm'])->setName('signup.index');
-    $app->post('/sign-up', [AuthController::class, 'signup']);
+    // Registration / Log in routes:
+    // SIGN UP
+    $app->get('/sign-up', [AuthController::class, 'showSignupForm'])
+        ->setName('auth.signup.form');
+
+    $app->post('/sign-up', [AuthController::class, 'processSignup'])
+        ->setName('auth.signup.submit');
+
+    // SIGN IN
+    $app->get('/sign-in', [AuthController::class, 'showSigninForm'])
+        ->setName('auth.signin.form');
+
+    $app->post('/sign-in', [AuthController::class, 'processSignin'])
+        ->setName('auth.signin.submit');
+
+    // SIGN OUT
+    $app->get('/sign-out', [AuthController::class, 'logout'])
+        ->setName('auth.logout');
+
 
     // to view a list of user profiles:
     $app->get('/profiles', [ProfilesController::class, 'index'])

@@ -84,7 +84,7 @@ $slides = 6;
     const slides = viewport.children;
     let current = 0;
     const slideCount = slides.length;
-    const delay = 4000;
+    const delay = 60000;
 
     function goToSlide(index) {
         const slideWidth = viewport.clientWidth;

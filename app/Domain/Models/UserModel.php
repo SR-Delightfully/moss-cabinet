@@ -7,7 +7,7 @@ namespace App\Domain\Models;
 use App\Helpers\Core\PDOService;
 use PDO;
 
-class UsersModel extends BaseModel
+class UserModel extends BaseModel
 {
     public function __construct(PDOService $pdo)
     {
