@@ -15,12 +15,12 @@ $langs = ['en', 'fr'];
 $tabs = [];
 
 if (UserContext::isLoggedIn() && UserContext::isAdmin()) {
-    $tabs['tab1'] = ["key" => "tab1"];
+    $tabs['admin-panel'] = ["key" => "admin-panel"];
 }
 
-$tabs['tab2'] = ["key" => "tab2"];
-$tabs['tab3'] = ["key" => "tab3"];
-$tabs['tab4'] = ["key" => "tab4"];
+$tabs['collections'] = ["key" => "collections"];
+$tabs['categories'] = ["key" => "categories"];
+$tabs['products'] = ["key" => "products"];
 
 ?>
 
@@ -61,8 +61,8 @@ $tabs['tab4'] = ["key" => "tab4"];
                 <h5>Merry meet, Anonymous one!</h5>
                 <button class="dropdown-toggle" id="drop-down">User dropdown</button>
                 <ul class="user-dropdown">
-                    <li><a href="signin"><?= LocalizationHelper::get("user_dropdown_content." . "anon1") ?></a></li>
-                    <li><a href="signup"><?= LocalizationHelper::get("user_dropdown_content." . "anon2") ?></a></li>
+                    <li><a href="sign-in"><?= LocalizationHelper::get("user_dropdown_content." . "anon1") ?></a></li>
+                    <li><a href="sign-up"><?= LocalizationHelper::get("user_dropdown_content." . "anon2") ?></a></li>
                 </ul>
             <?php endif; ?>
         </div>

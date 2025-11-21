@@ -23,7 +23,7 @@ ViewHelper::loadHeader($page_title);
 
       <div>
         <button type="submit">Sign In</button>
-        <button type="submit">Sign Up</button>
+        <a href="./sign-up">Don't have an account?</a>
       </div>
     </form>
   </div>

@@ -548,3 +548,128 @@ ul {
     outline: none;
     box-shadow: none;
 }
+
+
+/* Layout Reset */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+h1, h2, h3, p {
+    margin: 0 0 10px 0;
+}
+
+
+/* ============================
+   PRODUCT VIEW LAYOUT 
+   ============================ */
+.product-view {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.product-gallery .primary-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.thumbnail-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.thumbnail {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.product-info .price {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.product-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.product-actions button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+
+/* ============================
+   GRID LAYOUTS FOR CARDS
+   ============================ */
+.product-grid,
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+
+/* ============================
+   COLLECTIONS VIEW
+   ============================ */
+.collection-block {
+    margin-bottom: 40px;
+}
+
+.product-card {
+    display: block;
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+
+/* ============================
+   CATEGORY VIEW
+   ============================ */
+.category-card {
+    display: block;
+    padding: 20px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+}
+
+.category-content h2 {
+    margin-bottom: 5px;
+}
+
+
+/* ============================
+   RESPONSIVE STACKING
+   ============================ */
+@media (max-width: 768px) {
+    .product-view {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+#tabs {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+}

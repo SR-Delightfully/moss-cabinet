@@ -65,10 +65,8 @@ return static function (Slim\App $app): void {
         ->setName('signin.index');
 
     // to view Registration form:
-    $app->get('/sign-up', [SignupController::class, 'index'])
-        ->setName('signup.index');
-    $app->post('/sign-up', [UsersController::class, 'create'])
-        ->setName('signup.create');
+    $app->get('/sign-up', [AuthController::class, 'showSignupForm'])->setName('signup.index');
+    $app->post('/sign-up', [AuthController::class, 'signup']);
 
     // to view a list of user profiles:
     $app->get('/profiles', [ProfilesController::class, 'index'])

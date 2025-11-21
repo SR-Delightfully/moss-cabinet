@@ -1,10 +1,10 @@
 <?php
 return [
     'navbar_content' => [
-        'tab1' => 'Administration',
-        'tab2' => 'N<i>otre</i> C<i>ollections</i>',
-        'tab3' => 'N<i>otre Catégories</i>',
-        'tab4' => 'N<i>otre Produits</i>',
+        'admin-panel' => 'Administration',
+        'collections' => 'N<i>otre</i> C<i>ollections</i>',
+        'categories' => 'N<i>otre Catégories</i>',
+        'products' => 'N<i>otre Produits</i>',
         'greeting' => 'Joyeuse Rencontre',
     ],
     'user_dropdown_content' => [
@@ -16,5 +16,14 @@ return [
         "option6" => "Quitter",
         "anon1" => "Se Connecter!",
         "anon2" => "S'inscrire!",
+    ],
+        'auth_content' => [
+        "email" => "Courriel",
+        "username" => "Pseudonyme",
+        "password" => "Mot de Passe",
+        "confirm" => "Confirmer le mot de passe",
+        "fname" => "Prénom",
+        "lname" => "Nom",
+        "phone" => "Numero Téléphone"
     ]
 ];
