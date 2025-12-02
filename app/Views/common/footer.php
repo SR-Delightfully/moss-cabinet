@@ -1,32 +1,76 @@
-<footer id="bot-bar">
-    <p>(: this is the bottom navigation bar</p>
+<?php
+use App\Helpers\LocalizationHelper;
+use App\Helpers\UserContext;
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Initialize session and current user
+UserContext::init();
+$currentUser = UserContext::getCurrentUser();
+$currentLang = $_SESSION['lang'] ?? 'en';
+
+// Set language
+LocalizationHelper::setLanguage($currentLang);
+
+// Define tabs
+$column1 = [
+    'collections' => ['key' => 'collections'],
+    'categories'  => ['key' => 'categories'],
+    'products'    => ['key' => 'products'],
+];
+$column2 = [
+    "profile" => ['key' => 'Profile'],
+    "wishlist" => ['key' => 'WishList'],
+    "cart" => ['key' => 'Cart'],
+    "order" => ['key' => 'Orders'],
+    "settings" => ['key' => 'Settings'],
+];
+
+$tabs = $column1 + $column2;
+
+if (UserContext::isLoggedIn() && UserContext::isAdmin()) {
+    $tabs = ['admin' => ['key' => 'admin']] + $tabs;
+}
+
+// Add admin panel tab if user is admin
+if (UserContext::isLoggedIn() && UserContext::isAdmin()) {
+    $tabs = ['admin' => ['key' => 'admin']] + $tabs;
+}
+?>
+
+<footer id="footer-bar">
 
 </footer>
-
-
+    <div id="footer-content" class="display-flex-row">
+        <ul id="tabs">
+            <?php foreach ($column1 as $key => $tab): ?>
+                <li id="<?= $key ?>" class="tab">
+                    <a href="./<?= $tab['key'] ?>">
+                        <span class="tab-label"><?= LocalizationHelper::get("navbar_content." . $tab['key']) ?></span>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+                        <?php foreach ($column2 as $key => $tab): ?>
+                <li id="<?= $key ?>" class="tab">
+                    <a href="./<?= $tab['key'] ?>">
+                        <span class="tab-label"><?= LocalizationHelper::get("user_dropdown_content." . $tab['key']) ?></span>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</nav>
+</body>
 <script>
-document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-  toggle.addEventListener('click', (e) => {
-    e.stopPropagation(); // prevent clicks from bubbling up
-    const dropdown = toggle.nextElementSibling;
+document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("drop-down");
+    const menu   = document.querySelector(".user-dropdown");
 
-    // Close all other dropdowns first
-    document.querySelectorAll('.user-dropdown.open').forEach(menu => {
-      if (menu !== dropdown) menu.classList.remove('open');
+    toggle.addEventListener("click", () => {
+        menu.classList.toggle("open");
     });
-
-    dropdown.classList.toggle('open');
-  });
-});
-
-// Close dropdown if clicking outside
-window.addEventListener('click', () => {
-  document.querySelectorAll('.user-dropdown.open').forEach(menu => {
-    menu.classList.remove('open');
-  });
 });
 </script>
-
-</body>
-
 </html>

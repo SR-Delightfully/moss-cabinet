@@ -1,27 +1,24 @@
 <?php
 
 use App\Helpers\ViewHelper;
-//TODO: set the page title dynamically based on the view being rendered in the controller.
-$page_title = 'Admin Dashboard';
 
-//TODO: We need to load an admin-specific header.
+$page_title = $page_title ?? ($data['title'] ?? 'Admin Dashboard');
+
 ViewHelper::loadAdminHeader($page_title);
 
-
+$tables = $tables ?? []; 
 ?>
+
 
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dashboard</h1>
+        <h1 class="h2"><?= htmlspecialchars($page_title) ?></h1>
+
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                    Share
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                    Export
-                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
             </div>
             <button
                 type="button"
@@ -33,12 +30,42 @@ ViewHelper::loadAdminHeader($page_title);
             </button>
         </div>
     </div>
-    <canvas
-        class="my-4 w-100"
-        id="myChart"
-        width="900"
-        height="380"></canvas>
+
+    <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+
     <h2>Section title</h2>
+<?php if (!empty($tables)): ?>
+    <?php foreach ($tables as $tableName => $rows): ?>
+        <h3 class="mt-4 mb-2"><?= htmlspecialchars($tableName) ?></h3>
+
+        <?php if (!empty($rows)): ?>
+            <div class="table-responsive small">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <?php foreach (array_keys($rows[0]) as $column): ?>
+                                <th><?= htmlspecialchars($column) ?></th>
+                            <?php endforeach; ?>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($rows as $row): ?>
+                            <tr>
+                                <?php foreach ($row as $cell): ?>
+                                    <td><?= htmlspecialchars((string)$cell) ?></td>
+                                <?php endforeach; ?>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php else: ?>
+            <p>No data in this table.</p>
+        <?php endif; ?>
+
+    <?php endforeach; ?>
+<?php endif; ?>
+
     <div class="table-responsive small">
         <table id="example-table">
             <thead>
@@ -51,7 +78,9 @@ ViewHelper::loadAdminHeader($page_title);
                     <th scope="col">Image</th>
                 </tr>
             </thead>
+
             <tbody>
+
                 <tr>
                     <td>1,001</td>
                     <td>random</td>
@@ -66,209 +95,7 @@ ViewHelper::loadAdminHeader($page_title);
                         </form>
                     </td>
                 </tr>
-                <tr>
-                    <td>1,002</td>
-                    <td>placeholder</td>
-                    <td>irrelevant</td>
-                    <td>visual</td>
-                    <td>layout</td>
-                    <td>
-                        <form action="/upload" method="POST" enctype="multipart/form-data">
-                            <label for="upload-example">Select a file to upload:</label>
-                            <input type="file" name="upload-example" id="upload-example">
-                            <input type="submit" value="Upload File">
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1,003</td>
-                    <td>data</td>
-                    <td>rich</td>
-                    <td>dashboard</td>
-                    <td>tabular</td>
-                    <td>
-                        <form action="/upload" method="POST" enctype="multipart/form-data">
-                            <label for="upload-example">Select a file to upload:</label>
-                            <input type="file" name="upload-example" id="upload-example">
-                            <input type="submit" value="Upload File">
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1,003</td>
-                    <td>information</td>
-                    <td>placeholder</td>
-                    <td>illustrative</td>
-                    <td>data</td>
-                    <td>
-                        <form action="/upload" method="POST" enctype="multipart/form-data">
-                            <label for="upload-example">Select a file to upload:</label>
-                            <input type="file" name="upload-example" id="upload-example">
-                            <input type="submit" value="Upload File">
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1,004</td>
-                    <td>text</td>
-                    <td>random</td>
-                    <td>layout</td>
-                    <td>dashboard</td>
-                    <td>
-                        <form action="/upload" method="POST" enctype="multipart/form-data">
-                            <label for="upload-example">Select a file to upload:</label>
-                            <input type="file" name="upload-example" id="upload-example">
-                            <input type="submit" value="Upload File">
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1,005</td>
-                    <td>dashboard</td>
-                    <td>irrelevant</td>
-                    <td>text</td>
-                    <td>placeholder</td>
-                    <td>
-                        <form action="/upload" method="POST" enctype="multipart/form-data">
-                            <label for="upload-example">Select a file to upload:</label>
-                            <input type="file" name="upload-example" id="upload-example">
-                            <input type="submit" value="Upload File">
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1,006</td>
-                    <td>dashboard</td>
-                    <td>illustrative</td>
-                    <td>rich</td>
-                    <td>data</td>
-                    <td>
-                        <form action="/upload" method="POST" enctype="multipart/form-data">
-                            <label for="upload-example">Select a file to upload:</label>
-                            <input type="file" name="upload-example" id="upload-example">
-                            <input type="submit" value="Upload File">
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1,007</td>
-                    <td>placeholder</td>
-                    <td>tabular</td>
-                    <td>information</td>
-                    <td>irrelevant</td>
-                    <td>
-                        <form action="/upload" method="POST" enctype="multipart/form-data">
-                            <label for="upload-example">Select a file to upload:</label>
-                            <input type="file" name="upload-example" id="upload-example">
-                            <input type="submit" value="Upload File">
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1,008</td>
-                    <td>random</td>
-                    <td>data</td>
-                    <td>placeholder</td>
-                    <td>text</td>
-                    <td>
-                        <form action="/upload" method="POST" enctype="multipart/form-data">
-                            <label for="upload-example">Select a file to upload:</label>
-                            <input type="file" name="upload-example" id="upload-example">
-                            <input type="submit" value="Upload File">
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1,009</td>
-                    <td>placeholder</td>
-                    <td>irrelevant</td>
-                    <td>visual</td>
-                    <td>layout</td>
-                    <td>
-                        <form action="/upload" method="POST" enctype="multipart/form-data">
-                            <label for="upload-example">Select a file to upload:</label>
-                            <input type="file" name="upload-example" id="upload-example">
-                            <input type="submit" value="Upload File">
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1,010</td>
-                    <td>data</td>
-                    <td>rich</td>
-                    <td>dashboard</td>
-                    <td>tabular</td>
-                    <td>
-                        <form action="/upload" method="POST" enctype="multipart/form-data">
-                            <label for="upload-example">Select a file to upload:</label>
-                            <input type="file" name="upload-example" id="upload-example">
-                            <input type="submit" value="Upload File">
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1,011</td>
-                    <td>information</td>
-                    <td>placeholder</td>
-                    <td>illustrative</td>
-                    <td>data</td>
-                    <td>
-                        <form action="/upload" method="POST" enctype="multipart/form-data">
-                            <label for="upload-example">Select a file to upload:</label>
-                            <input type="file" name="upload-example" id="upload-example">
-                            <input type="submit" value="Upload File">
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1,012</td>
-                    <td>text</td>
-                    <td>placeholder</td>
-                    <td>layout</td>
-                    <td>dashboard</td>
-                </tr>
-                <tr>
-                    <td>1,013</td>
-                    <td>dashboard</td>
-                    <td>irrelevant</td>
-                    <td>text</td>
-                    <td>visual</td>
-                    <td>
-                        <form action="/upload" method="POST" enctype="multipart/form-data">
-                            <label for="upload-example">Select a file to upload:</label>
-                            <input type="file" name="upload-example" id="upload-example">
-                            <input type="submit" value="Upload File">
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1,014</td>
-                    <td>dashboard</td>
-                    <td>illustrative</td>
-                    <td>rich</td>
-                    <td>data</td>
-                    <td>
-                        <form action="/upload" method="POST" enctype="multipart/form-data">
-                            <label for="upload-example">Select a file to upload:</label>
-                            <input type="file" name="upload-example" id="upload-example">
-                            <input type="submit" value="Upload File">
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1,015</td>
-                    <td>random</td>
-                    <td>tabular</td>
-                    <td>information</td>
-                    <td>text</td>
-                    <td>
-                        <form action="/upload" method="POST" enctype="multipart/form-data">
-                            <label for="upload-example">Select a file to upload:</label>
-                            <input type="file" name="upload-example" id="upload-example">
-                            <input type="submit" value="Upload File">
-                        </form>
-                    </td>
-                </tr>
+
             </tbody>
         </table>
     </div>
@@ -277,6 +104,7 @@ ViewHelper::loadAdminHeader($page_title);
 <?php
 
 ViewHelper::loadJsScripts();
-//TODO: We need to load an admin-specific footer.
+
 ViewHelper::loadAdminFooter();
+
 ?>

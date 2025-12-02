@@ -43,21 +43,21 @@ public function showSigninForm(Request $request, Response $response, array $args
 }
 
 
-    // -------------------------------
-    // SIGN UP
-    // -------------------------------
+// -------------------------------
+// SIGN UP
+// -------------------------------
 
-    public function SignupForm(Request $request, Response $response, array $args): Response
-    {
-        $data = [
-            'page_title'   => 'Sign Up',
-            'contentView'  => APP_VIEWS_PATH . '/auth/signupView.php',
-            'isNavBarShown'=> false,
-            'data'         => []
-        ];
+public function showSignupForm(Request $request, Response $response, array $args): Response
+{
+    $data = [
+        'page_title'   => 'Sign Up',
+        'contentView'  => APP_VIEWS_PATH . '/auth/signupView.php',
+        'isNavBarShown'=> false,
+        'data'         => []
+    ];
 
-        return $this->render($response, 'common/layout.php', $data);
-    }
+    return $this->render($response, 'common/layout.php', $data);
+}
 
 public function processSignup(Request $request, Response $response, array $args): Response
 {

@@ -1,0 +1,107 @@
+
+#nav-bar {
+    margin-bottom: 3rem;
+    background-color: #c0c0c0;
+    max-height: max(5vh, 5rem);
+    padding: 1rem 3rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#nav-bar-user {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+    background: transparent;
+    margin-left: 1.5rem;
+}
+
+#nav-bar-user h4,
+#nav-bar-user h5 {
+    color: var(--h3-color);
+    margin: 0;
+}
+
+.bilbo-swash-caps-regular {
+    font-family: "Bilbo Swash Caps", cursive;
+    font-style: normal;
+}
+
+.corinthia-bold {
+    font-family: "Corinthia", cursive;
+    font-style: normal;
+}
+
+#brand {
+    min-width: 30vw;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    min-width: 12rem;
+    list-style: none;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.25s ease;
+    pointer-events: none;
+    z-index: 200;
+}
+
+.user-dropdown.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.user-dropdown li a {
+    display: block;
+    padding: 0.8rem 1rem;
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 0.05rem;
+    border: 2px solid hotpink;
+    min-width: 12vw;
+}
+
+.dropdown-toggle {
+    font-size: 1.2rem;
+    width: 12vw;
+    height: 2.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dropdown-toggle:focus,
+.dropdown-toggle:active {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Layout Reset */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+h1, h2, h3, p {
+    margin: 0 0 10px 0;
+}
+
+.sparkle-icon {
+    max-height: 3rem;
+}
+
+#tabs {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+}

@@ -66,8 +66,8 @@ if (UserContext::isLoggedIn() && UserContext::isAdmin()) {
                 <h5>Merry meet, Anonymous one!</h5>
                 <button class="dropdown-toggle" id="drop-down">User dropdown</button>
                 <ul class="user-dropdown">
-                    <li><a href="sign-in"><?= LocalizationHelper::get("user_dropdown_content.anon1") ?></a></li>
-                    <li><a href="sign-up"><?= LocalizationHelper::get("user_dropdown_content.anon2") ?></a></li>
+                    <li><a href="sign-in"><?= LocalizationHelper::get("user_dropdown_content.signintext") ?></a></li>
+                    <li><a href="sign-up"><?= LocalizationHelper::get("user_dropdown_content.signouttext") ?></a></li>
                 </ul>
             <?php endif; ?>
         </div>
