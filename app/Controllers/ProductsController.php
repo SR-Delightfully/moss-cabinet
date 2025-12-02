@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use DI\Container;
-use LDAP\Result;
 use App\Domain\Models\ProductsModel;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -14,98 +13,68 @@ class ProductsController extends BaseController
         Container $container,
         private ProductsModel $products_model
     ) {
-        parent::__construct($container); //pass the container to the parent
+        parent::__construct($container);
     }
 
-    //*GET admin/products
-    /**
-     *  Display a list of items.
-     * @param \Psr\Http\Message\ServerRequestInterface $request HTTP request
-     * @param \Psr\Http\Message\ResponseInterface $response HTTP response
-     * @param array $args
-     * @return Response
-     */
+    // Admin: /admin/products
+    public function adminIndex(Request $request, Response $response, array $args): Response
+    {
+        $products = $this->products_model->fetchProducts();
+
+        $data = [
+            'page_title' => 'Admin: List of Products',
+            'products' => $products
+        ];
+
+        return $this->render($response, 'admin/products/productsIndexView.php', $data);
+    }
+
+    // Frontend: /products
     public function index(Request $request, Response $response, array $args): Response
     {
         $products = $this->products_model->fetchProducts();
-        $data['data'] = [
-            'page_title' => 'List of products',
-            'message' => 'Welcome to the home page',
-            'products' => $products
+        $collections = $this->products_model->fetchCollections();
+        $categories = $this->products_model->fetchCategories();
+
+        $data = [
+            'page_title' => 'All Products',
+            'contentView' => APP_VIEWS_PATH . '/productsView.php',
+            'isNavBarShown' => true,
+            'data' => [
+                'products' => $products,
+                'collections' => $collections,
+                'categories' => $categories
+            ]
         ];
-        // $data["page_title"] = "Browse Products";
-        // $data["products"] = $products;
-        return $this->render($response, 'admin/products/productsIndexView.php', $data);
+
+        return $this->render($response, 'common/layout.php', $data);
     }
 
-    /**
-     * Show details of a single item.
-     * @return void
-     */
+    // Frontend: /product/{id}
     public function show(Request $request, Response $response, array $args): Response
     {
-        return $response;
-    }
+        $id = $args['id'] ?? null;
+        if (!$id) {
+            return $this->error($request, $response, $args);
+        }
 
-    /**
-     *  Display a form to create a new item.
-     * @return void
-     */
-    public function create(Request $request, Response $response, array $args): Response
-    {
-        return $response;
-    }
-
-    /**
-     * Save a new item to the database.
-     * @return void
-     */
-    public function store(Request $request, Response $response, array $args): Response
-    {
-        return $response;
-    }
-
-    /**
-     * Display a form to edit an item.
-     * @return void
-     */
-    public function edit(Request $request, Response $response, array $args): Response
-    {
-        //* 1) Get the id of the product from the query string params of the URI
-        $query_params = $request->getQueryParams();
-        // dd("Editing product: ".$product_id["id"]);
-        $id = $query_params["id"];
-
-        //* 2)  Pull the existing item identified by the received ID from the db.
         $product = $this->products_model->fetchProductById($id);
-        // dd($product);
+        $images = $this->products_model->fetchProductImages($id);
 
-        //* 3) Pass it to the view where the update/editing form filled with the item info will be rendered
         $data = [
-            'product' => []
+            'page_title' => $product['product_name'] ?? 'Product',
+            'contentView' => APP_VIEWS_PATH . '/products/productView.php',
+            'isNavBarShown' => true,
+            'data' => [
+                'product' => $product,
+                'images' => $images
+            ]
         ];
-        return $this->render($response, 'admin/products/productsIndexView.php', $data);
+
+        return $this->render($response, 'common/layout.php', $data);
     }
 
-    /**
-     * Save changes to an item.
-     * @return void
-     */
-    public function update(Request $request, Response $response, array $args): Response
-    {
-        return $response;
-    }
-
-    /**
-     * Remove an item.
-     * @return void
-     */
-    public function delete(Request $request, Response $response, array $args): Response
-    {
-        return $response;
-    }
-
-
+    // Reusable error handler
     public function error(Request $request, Response $response, array $args): Response
     {
         return $this->render($response, 'errorView.php');

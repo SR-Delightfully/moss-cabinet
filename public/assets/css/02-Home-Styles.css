@@ -1,0 +1,205 @@
+* {
+  box-sizing: border-box;
+  scrollbar-color: transparent transparent;
+  scrollbar-width: 0;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+}
+
+ol, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* CAROUSEL LAYOUT */
+.carousel {
+  position: relative;
+  aspect-ratio: 16 / 9; 
+  filter: drop-shadow(0 0 10px #0003);
+  overflow: hidden;
+}
+
+.carousel-viewport {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  counter-reset: item;
+}
+
+/* SLIDES */
+.carousel-slide {
+  flex: 0 0 auto; 
+  width: 100%; 
+  height: 100%; 
+  display: flex;
+  position: relative;
+  background: rgb(13, 74, 31);
+  counter-increment: item;
+  justify-content: center;
+  align-items: center;
+}
+
+/* If your slides contain images */
+.carousel-slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.carousel-slide:nth-child(even) {
+  background: rgb(51, 140, 63);
+}
+
+.carousel-slide::before {
+  content: counter(item);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  color: #fff;
+  font-size: 2em;
+}
+
+.carousel-snapper {
+  position: absolute;
+  inset: 0;
+  scroll-snap-align: center;
+}
+
+/* IMAGE NAV */
+.carousel-nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: .75rem;
+  text-align: center;
+  z-index: 5;
+}
+
+.carousel-nav-list,
+.carousel-nav-item {
+  display: inline-block;
+}
+
+.carousel-nav-btn {
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  border-radius: 50%;
+  margin: 0 .25rem;
+  background: #333;
+  border: .25rem solid transparent;
+  background-clip: content-box;
+  font-size: 0;
+  cursor: pointer;
+}
+
+/* ARROWS */
+.carousel::before,
+.carousel::after,
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  font-size: 0;
+}
+
+/* Clickable prev/next anchors */
+.carousel-prev {
+  left: 1rem;
+}
+
+.carousel-next {
+  right: 1rem;
+}
+
+/* Decorative arrow icons */
+.carousel::before,
+.carousel::after {
+  content: "";
+  z-index: 2;
+  background-color: #333;
+  background-size: 1.5rem 1.5rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+}
+
+.carousel::before {
+  left: 1rem;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+.carousel::after {
+  right: 1rem;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+/* INTERACTION */
+.carousel:hover .carousel-viewport,
+.carousel:focus-within .carousel-viewport {
+  scroll-behavior: smooth; 
+}
+
+@media (max-width: 600px) {
+  .carousel-nav-btn {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+
+  .carousel::before,
+  .carousel::after {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+#hero-container {
+  padding: 0 !important;
+  display: grid;
+  /* height: 135vh; */
+  height: 200vh;
+  grid-template-columns: 33.25% 33.25% auto;
+  grid-template-rows: 5% 16.75% 16.75%  auto auto auto;
+  grid-gap: 1rem;
+  grid-template-areas:
+    "title title filler"
+    "carousel carousel user"
+    "carousel carousel user"
+    "categories categories categories"
+    "map map map"
+    "map map map";
+}
+#page-title {  grid-area: title;background-color: lightcoral;}
+#page-filler {  grid-area: filler;background-color: lightsalmon;}
+#best-sellers {
+  grid-area: carousel; 
+  background-color: khaki; 
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  flex-direction: row;
+  align-items: stretch;
+  height: 100%; 
+}
+
+#featured-user {
+    grid-area: user;
+    background-color: lightgreen;
+  }
+#categories-display { grid-area: categories; background-color: lightseagreen; display: flex; flex-wrap: wrap; gap: 10px; }
+
+#local-map {
+  grid-area: map;
+}

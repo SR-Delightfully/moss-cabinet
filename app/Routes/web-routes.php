@@ -8,9 +8,12 @@ declare(strict_types=1);
 
 use App\Helpers\FlashMessage;
 use App\Controllers\FlashDemoController;
+use App\Controllers\AuthController;
 use App\Helpers\SessionManager;
 use App\Controllers\DemoController;
 use App\Controllers\AdminController;
+use App\Controllers\UsersController;
+use App\Controllers\DashboardController;
 use App\Controllers\CartController;
 use App\Controllers\CategoriesController;
 use App\Controllers\CategoryController;
@@ -23,8 +26,6 @@ use App\Controllers\ProductsController;
 use App\Controllers\ProfileController;
 use App\Controllers\ProfilesController;
 use App\Controllers\SettingsController;
-use App\Controllers\SigninController;
-use App\Controllers\SignupController;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -39,7 +40,7 @@ return static function (Slim\App $app): void {
     $app->get('/home', [HomeController::class, 'index'])
         ->setName('home.index');
 
-    $app -> get ('/products/edit', [ProductController::class, 'edit']);
+    $app->get('/products/edit', [ProductController::class, 'edit']);
 
 
     //* Name the routes (setName('')) to help with redirection later
@@ -47,35 +48,37 @@ return static function (Slim\App $app): void {
     //* Base URI: localhost/3d-models-app/admin
     $app->group('/admin', function ($group) {
         //Add/register admin routes
-        $group->get(
-            '/dashboard',
-            [DashboardController::class, 'index']
-        )->setName('dashboard.index');
-
-
-        $group->get(
-            '/products',
-            [ProductsController::class, 'index']
-        )->setName('products.index');
-
-        $group->get(
-            '/products/edit',
-            [ProductsController::class, 'edit']
-        );
-
-        $group->get(
-            '/categories',
-            [ProductsController::class, 'index']
-        )->setName('categories.index');
+        $group->get('', [DashboardController::class, 'index'])->setName('dashboard.index');
+        $group->get('/', [DashboardController::class, 'index'])->setName('dashboard.index');
+        $group->get('/users', [UsersController::class, 'index'])->setName('products.index');
+        $group->get('/products', [ProductsController::class, 'adminIndex'])->setName('admin.products.index');
+        $group->post('/products/create', [ProductsController::class, 'createProduct']);
+        $group->get('/products/edit', [ProductsController::class, 'editProduct']);
+        $group->get('/categories', [CategoriesController::class, 'index'])->setName('categories.index');
+        $group->post('/categories/create', [CategoriesController::class, 'index'])->setName('categories.index');
     });
+    // To be added once AdminAuthMiddleware is implemented.
+    // })->add(AdminAuthMiddleware::class);
 
-    // to view Login form:
-    $app->get('/signin', [SigninController::class, 'index'])
-        ->setName('signin.index');
+    // Registration / Log in routes:
+    // SIGN UP
+    $app->get('/sign-up', [AuthController::class, 'showSignupForm'])
+        ->setName('auth.signup.form');
 
-    // to view Registration form:
-    $app->get('/signup', [SignupController::class, 'index'])
-        ->setName('signup.index');
+    $app->post('/sign-up', [AuthController::class, 'processSignup'])
+        ->setName('auth.signup.submit');
+
+    // SIGN IN
+    $app->get('/sign-in', [AuthController::class, 'showSigninForm'])
+        ->setName('auth.signin.form');
+
+    $app->post('/sign-in', [AuthController::class, 'processSignin'])
+        ->setName('auth.signin.submit');
+
+    // SIGN OUT
+    $app->get('/sign-out', [AuthController::class, 'logout'])
+        ->setName('auth.logout');
+
 
     // to view a list of user profiles:
     $app->get('/profiles', [ProfilesController::class, 'index'])
@@ -127,7 +130,7 @@ return static function (Slim\App $app): void {
     });
 
     //______________________________________________________________________________________________________
-    
+
     $app->get('/demo/counter', [DemoController::class, 'counter'])->setName('demo.counter');
     $app->post('/demo/reset', [DemoController::class, 'resetCounter'])->setName('demo.reset');
 

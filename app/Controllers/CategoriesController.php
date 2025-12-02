@@ -22,13 +22,19 @@ public function __construct (Container $container, private CategoriesModel $cate
     {
 
        $categories = $this->categories_model->getCategories();
-      $data['data']=[
-    'title'=>'List of Categories',
-    'message'=>'Welcome to the home page',
-    'categories'=>$categories
-];
-    return $this->render($response,'<admin>
-    <categories>categoriesIndexView.php',$data);
+
+        $data = [
+            'page_title' => 'Welcome to Moss Cabinets Categories Page',
+            'contentView' => APP_VIEWS_PATH . '/categoriesView.php',
+            'isNavBarShown' => true,
+            'data' => [
+                'title' => 'Categories',
+                'message' => "categories",
+                'categories'=>$categories
+            ]
+        ];
+
+        return $this->render($response, 'common/layout.php', $data);
 
  }
 
