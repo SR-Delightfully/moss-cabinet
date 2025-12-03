@@ -26,7 +26,7 @@ $definitions = [
 
         $app = AppFactory::createFromContainer($container);
         // echo APP_ROOT_DIR_NAME;exit;
-        $app->setBasePath('/' . APP_ROOT_DIR_NAME);
+//        $app->setBasePath('/' . APP_ROOT_DIR_NAME);
 
         // Register web routes.
         (require_once realpath(__DIR__ . '/../app/Routes/web-routes.php'))($app);

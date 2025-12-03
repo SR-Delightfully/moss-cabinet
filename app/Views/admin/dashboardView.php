@@ -9,6 +9,12 @@ ViewHelper::loadAdminHeader($page_title);
 $tables = $tables ?? []; 
 ?>
 
+<div class="admin-dashboard-wrapper">
+
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br>
+<span>section--------------------------------------------------------------</span>
 
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div
