@@ -56,6 +56,10 @@ return static function (Slim\App $app): void {
         $group->get('/products/edit', [ProductsController::class, 'editProduct']);
         $group->get('/categories', [CategoriesController::class, 'index'])->setName('categories.index');
         $group->post('/categories/create', [CategoriesController::class, 'index'])->setName('categories.index');
+        $group->get('/products/create', [ProductsController::class, 'showCreateForm'])
+        ->setName('admin.products.create');
+        $group->get('/categories/create', [CategoriesController::class, 'showCreateForm'])
+        ->setName('admin.categories.create');
     });
     // To be added once AdminAuthMiddleware is implemented.
     // })->add(AdminAuthMiddleware::class);

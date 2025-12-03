@@ -1,4 +1,3 @@
-<!-- ? Can we delete this file if we have the DashboardController? -->
 <?php
 
 declare(strict_types=1);
