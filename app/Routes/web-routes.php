@@ -48,6 +48,7 @@ return static function (Slim\App $app): void {
     //* Base URI: localhost/3d-models-app/admin
     $app->group('/admin', function ($group) {
         //Add/register admin routes
+<<<<<<< Updated upstream
         $group->get('', [DashboardController::class, 'index'])->setName('dashboard.index');
         $group->get('/', [DashboardController::class, 'index'])->setName('dashboard.index');
         $group->get('/users', [UsersController::class, 'index'])->setName('products.index');
@@ -60,6 +61,28 @@ return static function (Slim\App $app): void {
         ->setName('admin.products.create');
         $group->get('/categories/create', [CategoriesController::class, 'showCreateForm'])
         ->setName('admin.categories.create');
+=======
+        $group->get(
+            '/dashboard',
+            [AdminController::class, 'index']
+        )->setName('dashboard.index');
+
+
+        $group->get(
+            '/products',
+            [ProductsController::class, 'index']
+        )->setName('products.index');
+
+        $group->get(
+            '/products/edit',
+            [ProductsController::class, 'edit']
+        );
+
+        $group->get(
+            '/categories',
+            [ProductsController::class, 'index']
+        )->setName('categories.index');
+>>>>>>> Stashed changes
     });
     // To be added once AdminAuthMiddleware is implemented.
     // })->add(AdminAuthMiddleware::class);

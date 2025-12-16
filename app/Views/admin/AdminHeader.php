@@ -72,7 +72,7 @@ function is_active_path(string $path, string $currentPath): bool {
 
             <li class="nav-item">
                 <a class="nav-link <?= is_active_path('admin', $currentPath) ? 'active' : '' ?>"
-                   href="./">
+                   href="./admin/">
                     <?= LocalizationHelper::get('admin_sidebar.dashboard') ?>
                 </a>
             </li>
