@@ -59,6 +59,36 @@ public function showSignupForm(Request $request, Response $response, array $args
     return $this->render($response, 'common/layout.php', $data);
 }
 
+// -------------------------------
+// Forgot Password Form
+// -------------------------------
+public function showForgotPasswordForm(Request $request, Response $response, array $args): Response
+{
+    $data = [
+        'page_title'   => 'Forgot Password',
+        'contentView'  => APP_VIEWS_PATH . '/auth/forgotPasswordView.php',
+        'isNavBarShown'=> false,
+        'data'         => []
+    ];
+
+    return $this->render($response, 'common/layout.php', $data);
+}
+
+// -------------------------------
+// Forgot Email Form
+// -------------------------------
+public function showForgotEmailForm(Request $request, Response $response, array $args): Response
+{
+    $data = [
+        'page_title'   => 'Forgot Email',
+        'contentView'  => APP_VIEWS_PATH . '/auth/forgotEmailView.php',
+        'isNavBarShown'=> false,
+        'data'         => []
+    ];
+
+    return $this->render($response, 'common/layout.php', $data);
+}
+
 public function processSignup(Request $request, Response $response, array $args): Response
 {
     $post = $request->getParsedBody();

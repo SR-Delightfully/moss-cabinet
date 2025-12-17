@@ -36,18 +36,19 @@ function is_active_path(string $path, string $currentPath): bool {
     <title><?= $page_title ?? 'Admin Dashboard' ?></title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/public/assets/css/00-Global-Styles.css">
-    <link rel="stylesheet" href="/public/assets/css/01-Authorization-Styles.css">
-    <link rel="stylesheet" href="/public/assets/css/02-Home-Styles.css">
-    <link rel="stylesheet" href="/public/assets/css/03-Profile-Styles.css">
-    <link rel="stylesheet" href="/public/assets/css/04-Cart-Styles.css">
-    <link rel="stylesheet" href="/public/assets/css/05-Categories-Styles.css">
-    <link rel="stylesheet" href="/public/assets/css/06-Collections-Styles.css">
-    <link rel="stylesheet" href="/public/assets/css/07-Products-Styles.css">
-    <link rel="stylesheet" href="/public/assets/css/08-Product-Styles.css">
-    <link rel="stylesheet" href="/public/assets/css/09-Settings-Styles.css">
-    <link rel="stylesheet" href="/public/assets/css/10-Admin-Styles.css">
-    <link rel="stylesheet" href="/public/assets/css/11-NavBar-Styles.css">
+    <link rel="stylesheet" href="./public/assets/css/00-Global-Styles.css">
+    <link rel="stylesheet" href="./public/assets/css/01-Authorization-Styles.css">
+    <link rel="stylesheet" href="./public/assets/css/02-Home-Styles.css">
+    <link rel="stylesheet" href="./public/assets/css/03-Checkout-Styles.css">
+    <link rel="stylesheet" href="./public/assets/css/04-Profile-Styles.css">
+    <link rel="stylesheet" href="./public/assets/css/05-Categories-Styles.css">
+    <link rel="stylesheet" href="./public/assets/css/06-Collections-Styles.css">
+    <link rel="stylesheet" href="./public/assets/css/07-Products-Styles.css">
+    <link rel="stylesheet" href="./public/assets/css/08-Product-Styles.css">
+    <link rel="stylesheet" href="./public/assets/css/09-Settings-Styles.css">
+    <link rel="stylesheet" href="./public/assets/css/11-NavBar-Styles.css">
+    <link rel="stylesheet" href="./public/assets/css/12-Footer-Styles.css">
+    <link rel="stylesheet" href="./public/assets/css/13-NavBar-Styles.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -31,8 +31,6 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 
 return static function (Slim\App $app): void {
-
-
     //* NOTE: Route naming pattern: [controller_name].[method_name]
     $app->get('/', [HomeController::class, 'index'])
         ->setName('home.index');
@@ -78,6 +76,20 @@ return static function (Slim\App $app): void {
 
     $app->post('/sign-in', [AuthController::class, 'processSignin'])
         ->setName('auth.signin.submit');
+
+    // Forgot Password
+    $app->get('/forgot-password', [AuthController::class, 'showForgotPasswordForm'])
+        ->setName('auth.forgotPassword.form');
+
+    $app->post('/forgot-password', [AuthController::class, 'processForgotPassword'])
+        ->setName('auth.forgotPassword.submit');
+
+    // Forgot Email
+    $app->get('/forgot-email', [AuthController::class, 'showForgotEmailForm'])
+        ->setName('auth.forgotEmail.form');
+
+    $app->post('/forgot-email', [AuthController::class, 'processForgotEmail'])
+        ->setName('auth.forgotEmail.submit');
 
     // SIGN OUT
     $app->get('/sign-out', [AuthController::class, 'logout'])
@@ -139,12 +151,13 @@ return static function (Slim\App $app): void {
     $app->post('/demo/reset', [DemoController::class, 'resetCounter'])->setName('demo.reset');
 
     $app->get('/test-session', function ($request, $response) {
-        // Get current counter, increment it
+        // Get current counter, increment it.
         $counter = SessionManager::get('counter', 0) + 1;
         SessionManager::set('counter', $counter);
-        // FlashMessage::add('success', 'Refresh successful! Welcome back.');
+
         $response->getBody()->write("Counter: " . $counter);
-        return $response->withHeader('Location', '/counter')->withStatus(302);
+
+        return $response;
     });
 
     // Flash message demo routes

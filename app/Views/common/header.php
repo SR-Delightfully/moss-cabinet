@@ -27,6 +27,7 @@ $currentUser = UserContext::getCurrentUser();
     <link rel="stylesheet" href="./public/assets/css/10-Admin-Styles.css">
     <link rel="stylesheet" href="./public/assets/css/11-NavBar-Styles.css">
     <link rel="stylesheet" href="./public/assets/css/12-NavBar-styles.css">
+    <link rel="stylesheet" href="./public/assets/css/13-Admin-styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Bilbo+Swash+Caps&family=Bonheur+Royale&family=Corinthia:wght@400;700&family=Eagle+Lake&family=Edu+NSW+ACT+Cursive:wght@400..700&family=Manufacturing+Consent&family=Moon+Dance&family=Playwrite+NL:wght@100..400&family=Qwigley&display=swap" rel="stylesheet">
