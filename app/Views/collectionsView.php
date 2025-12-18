@@ -11,7 +11,6 @@ ViewHelper::loadHeader($page_title);
     <?php foreach ($collections as $collection): ?>
         <section class="collection-block">
             <h2><?= $collection['collection_name'] ?></h2>
-
             <div class="product-grid">
                 <?php if (!empty($collection['products'])): ?>
                     <?php foreach ($collection['products'] as $p): ?>

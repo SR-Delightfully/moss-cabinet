@@ -9,7 +9,6 @@
     padding: 1rem 3rem;
     justify-content: space-between;
     align-items: center;
-    min-width: 100vw;
 }
 
 #nav-bar-user {
@@ -79,15 +78,33 @@
     text-decoration: none;
     font-size: 1rem;
     letter-spacing: 0.05rem;
-    min-width: 12vw;
+    min-width: 11vw;
+    text-align: center;
+    background-color: var(--color-light-teal-1);
+}
+
+.user-dropdown li:first-child > a {
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.user-dropdown li:last-child > a {
+    border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.user-dropdown li a:hover {
+    color: #dddddd;
+    background-color: var(--color-purple-2);
+    border-radius: 0.5rem;
 }
 
 .dropdown-toggle {
     font-size: 1.2rem;
-    width: 12vw;
+    width: 11vw;
     height: 2.5rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    border-radius: 0.5rem;
+    border: 2px solid var(--color-yellow-2);
 }
 
 .dropdown-toggle:focus,
@@ -122,4 +139,6 @@ h1, h2, h3, p {
     gap: 3rem;
     justify-content: center;
     align-items: center;
+    font-size: 20px;
+    margin-top: 1rem;
 }

@@ -16,6 +16,9 @@ ViewHelper::loadHeader($page_title);
 
     <div class="checkout-grid">
 
+        <!-- ===========================
+             BILLING + SHIPPING FORM
+             =========================== -->
         <form method="POST" action="/checkout/submit" class="checkout-form">
 
             <h2>Billing Information</h2>
@@ -78,6 +81,10 @@ ViewHelper::loadHeader($page_title);
 
         </form>
 
+
+        <!-- ===========================
+             ORDER SUMMARY
+             =========================== -->
         <div class="order-summary">
             <h2>Order Summary</h2>
 

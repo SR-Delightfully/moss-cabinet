@@ -92,8 +92,8 @@ $slides = 6;
         <div class="square-deco-square-left-bottom"></div>
         <div class="square-deco-square-right-top"></div>
         <div class="square-deco-square-right-bottom"></div>
-        <div class="square-deco-tall"></div>
-        <div class="square-deco-wide"></div>
+        <div class="square-deco-tall" id="square-deco-container-tall"></div>
+        <div class="square-deco-wide" id="square-deco-container-wide"></div>
     </div>
       </li>
     <?php endforeach; ?>

@@ -21,6 +21,7 @@ class HomeController extends BaseController
 
     public function index(Request $request, Response $response, array $args): Response
     {
+        // Fetch all unique categories
         $categoriesStmt = $this->db->getPDO()->prepare("
             SELECT DISTINCT cat.category_id, cat.category_name
             FROM categories cat
