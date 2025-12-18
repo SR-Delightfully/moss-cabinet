@@ -16,8 +16,8 @@ $slides = 6;
 <div id="hero-container" class="page center div-style-1">
 
 <section id="page-title" class="square-deco-container container">
-  <div class="square-deco-content">
-        <h1>Moss Cabinet</h1>
+  <div class="square-deco-content ">
+        <h1 class="bilbo-swash-caps-regular fancy-title">WitchCraft Supplies & Apothecary Tools</h1>
   </div>
   <div class="square-deco-inner"></div>
   <div class="square-deco-square-left-top"></div>
@@ -28,9 +28,9 @@ $slides = 6;
   <div class="square-deco-wide"></div>
 </section>
 
-<section id="page-filler" class="flower-divider square-deco-container container">
-  <div class="square-deco-content">
-        <h2><b>· ·</b> ─────── ·𖥸· ─────── <b>· ·</b></h2>
+<section id="page-filler1" class="flower-divider square-deco-container container">
+  <div class="square-deco-content ">
+        <h3><b>· ·</b> ─────── ·𖥸· ─────── <b>· ·</b></h3>
   </div>
   <div class="square-deco-inner"></div>
   <div class="square-deco-square-left-top"></div>
@@ -79,15 +79,38 @@ $slides = 6;
   <div class="square-deco-wide"></div>
 </section>
 
-<!-- CATEGORIES (REAL categories, not collections) -->
 <section id="categories-display" class="cards-container wide">
   <ul>
     <?php foreach ($categories as $category): ?>
-      <li class="category-card">
-        <?= htmlspecialchars($category['category_name']) ?>
+      <li>
+        <div class="category-card square-deco-container container">
+        <div class="square-deco-content">
+              <h3><?= htmlspecialchars($category['category_name']) ?></h3>
+        </div>
+        <div class="square-deco-inner"></div>
+        <div class="square-deco-square-left-top"></div>
+        <div class="square-deco-square-left-bottom"></div>
+        <div class="square-deco-square-right-top"></div>
+        <div class="square-deco-square-right-bottom"></div>
+        <div class="square-deco-tall"></div>
+        <div class="square-deco-wide"></div>
+    </div>
       </li>
     <?php endforeach; ?>
   </ul>
+</section>
+
+<section id="page-filler2" class="flower-divider square-deco-container container">
+  <div class="square-deco-content">
+        <h2><b>· ·</b> ─────── ·𖥸· ─────── <b>· ·</b></h2>
+  </div>
+  <div class="square-deco-inner"></div>
+  <div class="square-deco-square-left-top"></div>
+  <div class="square-deco-square-left-bottom"></div>
+  <div class="square-deco-square-right-top"></div>
+  <div class="square-deco-square-right-bottom"></div>
+  <div class="square-deco-tall"></div>
+  <div class="square-deco-wide"></div>
 </section>
 
 <section id="local-map" class="map-section">
@@ -95,11 +118,11 @@ $slides = 6;
 
     <div class="map-wrapper" style="display:flex; gap:20px;position:absolute;left:50%;transform:translate(-50%,0);">
 
-        <div id="store-sidebar" style="width:42rem; max-height:49.75rem; overflow-y:scroll; border:1px solid #ccc; padding:10px; background:#fafafa;">
+        <div id="store-sidebar" style="width:30rem; max-height:49.75rem; overflow-y:scroll; border:1px solid #ccc; padding:10px; background:#fafafa;">
         </div>
 
         <div style="flex:1;position:relative;">
-            <div id="jewelry-map" style="width:calc(100vw - 42rem - 16rem); height:49.75rem; position:relative; right:0;"></div>
+            <div id="jewelry-map" style="width:calc(100vw - 30rem - 33rem); height:49.75rem; position:relative; right:0;"></div>
         </div>
 
     </div>

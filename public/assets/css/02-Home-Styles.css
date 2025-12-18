@@ -167,18 +167,17 @@ ol, li {
 
 #hero-container {
   overflow: hidden;
-  padding: 0rem 2rem !important;
+  padding: 0rem 16rem !important;
   display: grid;
   /* height: 135vh; */
   height: 200vh;
-  grid-template-columns: 31% 31% auto;
-  grid-template-rows: 5% 16.75% 16.75%  auto auto auto;
+  grid-template-columns: auto auto 26.5%;
+  grid-template-rows: 4% 32% 18% auto auto;
   grid-gap: 2rem;
   grid-template-areas:
-    "title title filler"
+    "title title filler1"
     "carousel carousel user"
-    "carousel carousel user"
-    "categories categories categories"
+    "categories categories filler2"
     "map map map"
     "map map map";
 }
@@ -188,8 +187,32 @@ ol, li {
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
-#page-filler {  
-  grid-area: filler;
+.fancy-title {
+  letter-spacing: 0.5rem;
+  margin-left: -2.25rem;
+  width: 120%;
+  font-size: 5.35rem;
+  line-height: 0.9;
+  position: relative;
+  z-index: 9999;
+  text-shadow: 0px 0px 2px var(--color-light-green-2),
+               0px 0px 1px var(--color-yellow-0),
+               0px 1px 1px var(--color-yellow-1),
+               0px 2px 1px var(--color-yellow-0),
+               0px 3px 1px var(--color-yellow-1),
+               0px 4px 1px var(--color-yellow-2),
+               1px 5px 1px rgba(16, 16, 16, 1),
+               2px 8px 2px rgba(16, 16, 16, 0.2);
+}
+
+#page-filler1 {  
+  grid-area: filler1;
+  background-color: var(--primary-color);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+#page-filler2 {  
+  grid-area: filler2;
   background-color: var(--primary-color);
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
@@ -214,12 +237,21 @@ ol, li {
 #categories-display { 
   grid-area: categories; 
   background-color: var(--primary-color);
-  display: flex; 
-  flex-wrap: wrap; 
-  gap: 10px; 
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
-  
+#categories-display > ul {
+  display: flex; 
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap:2rem;
+  padding: 0;
+}
+#categories-display > ul > li > .category-card {
+  min-height: 27rem;
+  min-width: 19.7rem !important;
+  max-width: 19.7rem !important;
+}
 
 #local-map {
   grid-area: map;
