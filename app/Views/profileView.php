@@ -5,6 +5,7 @@ use \App\Helpers\UserContext;
 
 $page_title = 'Welcome to Moss Cabinet!';
 $user = UserContext ::getCurrentUser();
+//fjas
 
 $orders = [];
 
