@@ -1,4 +1,4 @@
-#signin-form, #signup-form {
+#signin-form, #signup-form, #forgot-password-form, #forgot-email-form {
     border-radius: 40rem 40rem 0 0;
 
     box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.25);
@@ -139,4 +139,3 @@
     text-decoration: none;
     color: var(--color-white-2);
 }
-

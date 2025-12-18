@@ -5,19 +5,40 @@ use App\Helpers\ViewHelper;
 $page_title = 'Home';
 ViewHelper::loadHeader($page_title);
 
+$categories  = $data['categories'] ?? [];
+$collections = $data['collections'] ?? [];
+
 $slides = 6;
 ?>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
-<div id="hero-container" class="page center border-2 div-style-1">
+<div id="hero-container" class="page center div-style-1">
 
-<section id="page-title" class="fancy-title">
-    <h1>Moss Cabinet</h1>
+<section id="page-title" class="square-deco-container container">
+  <div class="square-deco-content ">
+        <h1 class="bilbo-swash-caps-regular fancy-title">WitchCraft Supplies & Apothecary Tools</h1>
+  </div>
+  <div class="square-deco-inner"></div>
+  <div class="square-deco-square-left-top"></div>
+  <div class="square-deco-square-left-bottom"></div>
+  <div class="square-deco-square-right-top"></div>
+  <div class="square-deco-square-right-bottom"></div>
+  <div class="square-deco-tall"></div>
+  <div class="square-deco-wide"></div>
 </section>
 
-<section id="page-filler" class="flower-divider">
-    <p><b>· ·</b> ─────── ·𖥸· ─────── <b>· ·</b></p>
+<section id="page-filler1" class="flower-divider square-deco-container container">
+  <div class="square-deco-content ">
+        <h3><b>· ·</b> ─────── ·𖥸· ─────── <b>· ·</b></h3>
+  </div>
+  <div class="square-deco-inner"></div>
+  <div class="square-deco-square-left-top"></div>
+  <div class="square-deco-square-left-bottom"></div>
+  <div class="square-deco-square-right-top"></div>
+  <div class="square-deco-square-right-bottom"></div>
+  <div class="square-deco-tall"></div>
+  <div class="square-deco-wide"></div>
 </section>
 
 <section id="best-sellers" class="carousel">
@@ -45,33 +66,63 @@ $slides = 6;
   </aside>
 </section>
 
-<section id="featured-user" class="img-container">
+<section id="featured-user" class="square-deco-container container">
+  <div class="square-deco-content img-container">
     <img src="https://i.pinimg.com/1200x/41/df/ad/41dfad14c853b8b81bdadda0a74e300a.jpg">
+  </div>
+  <div class="square-deco-inner"></div>
+  <div class="square-deco-square-left-top"></div>
+  <div class="square-deco-square-left-bottom"></div>
+  <div class="square-deco-square-right-top"></div>
+  <div class="square-deco-square-right-bottom"></div>
+  <div class="square-deco-tall"></div>
+  <div class="square-deco-wide"></div>
 </section>
 
 <section id="categories-display" class="cards-container wide">
-    <ul>
-        <li>cat1</li>
-        <li>cat2</li>
-        <li>cat3</li>
-        <li>cat4</li>
-        <li>cat5</li>
-        <li>cat6</li>
-    </ul>
+  <ul>
+    <?php foreach ($categories as $category): ?>
+      <li>
+        <div class="category-card square-deco-container container">
+        <div class="square-deco-content">
+              <h3><?= htmlspecialchars($category['category_name']) ?></h3>
+        </div>
+        <div class="square-deco-inner"></div>
+        <div class="square-deco-square-left-top"></div>
+        <div class="square-deco-square-left-bottom"></div>
+        <div class="square-deco-square-right-top"></div>
+        <div class="square-deco-square-right-bottom"></div>
+        <div class="square-deco-tall"></div>
+        <div class="square-deco-wide"></div>
+    </div>
+      </li>
+    <?php endforeach; ?>
+  </ul>
 </section>
 
-<!-- Maybe add another section here to display the latest entries -->
+<section id="page-filler2" class="flower-divider square-deco-container container">
+  <div class="square-deco-content">
+        <h2><b>· ·</b> ─────── ·𖥸· ─────── <b>· ·</b></h2>
+  </div>
+  <div class="square-deco-inner"></div>
+  <div class="square-deco-square-left-top"></div>
+  <div class="square-deco-square-left-bottom"></div>
+  <div class="square-deco-square-right-top"></div>
+  <div class="square-deco-square-right-bottom"></div>
+  <div class="square-deco-tall"></div>
+  <div class="square-deco-wide"></div>
+</section>
 
 <section id="local-map" class="map-section">
     <h2>Local Witchy Shops</h2>
 
     <div class="map-wrapper" style="display:flex; gap:20px;position:absolute;left:50%;transform:translate(-50%,0);">
 
-        <div id="store-sidebar" style="width:42rem; max-height:49.75rem; overflow-y:scroll; border:1px solid #ccc; padding:10px; background:#fafafa;">
+        <div id="store-sidebar" style="width:30rem; max-height:49.75rem; overflow-y:scroll; border:1px solid #ccc; padding:10px; background:#fafafa;">
         </div>
 
         <div style="flex:1;position:relative;">
-            <div id="jewelry-map" style="width:calc(100vw - 42rem - 16rem); height:49.75rem; position:relative; right:0;"></div>
+            <div id="jewelry-map" style="width:calc(100vw - 30rem - 33rem); height:49.75rem; position:relative; right:0;"></div>
         </div>
 
     </div>

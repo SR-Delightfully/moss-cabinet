@@ -24,6 +24,7 @@ class ViewHelper
         $page_title =  $page_title ?? 'Default Title';
         require_once APP_VIEWS_PATH . '/admin/AdminHeader.php';
     }
+    
 
     /**
      * Load the common JavaScript scripts for the page.

@@ -22,9 +22,16 @@
     --color-white-0: #a6a867;
     --color-white-1: #c5c295;
     --color-white-2: #e3dcc2;
+    --color-light-teal-0: #133730;
+    --color-light-teal-1: #2B4541;
+    --color-light-teal-2: #46645D;
+    --color-dark-teal-0: #0B121D;
+    --color-dark-teal-1: #0C1B21;
+    --color-dark-teal-2: #0D2A26;
     --color-light-green-0: #222805;
     --color-light-green-1: #383d1c;
     --color-light-green-2: #5d6135;
+    --color-light-green-3: #848765;
     --color-dark-green-0: #020b01;
     --color-dark-green-1: #071002;
     --color-dark-green-2: #131902;
@@ -36,6 +43,8 @@
     /* ? to be used to allow different themes*/
     --background-color: var(--tone-05);
     --body-color: var(--tone-05);
+    --primary-color: var(--tone-06);
+    --secondary-color: var(--tone-02);
     --h1-color: var(--tone-00);
     --h2-color: var(--tone-02);
     --h3-color: var(--tone-03);
@@ -57,23 +66,27 @@
 /* Themes: */
 /* ? Feel free to add additional themes if you want to! :D */
 :root[data-theme="lights-off"] {
-    --background-color: var(--tone-00);
-    --body-color: var(--tone-00);
-    --h1-color: var(--tone-10);
-    --h2-color: var(--tone-08);
-    --h3-color: var(--tone-06);
-    --h4-color: var(--tone-06);
-    --h5-color: var(--tone-06);
-    --h6-color: var(--tone-06);
-    --hr-color: var(--tone-08);
+    --background-color: var(--tone-08);
+    --body-color: var(--color-dark-teal-2);
+    --primary-color: var(--color-light-teal-1);
+    --secondary-color: var(--color-dark-teal-2);
+    --h1-color: var(--color-white-2);
+    --h2-color: var(--color-white-1);
+    --h3-color: var(--color-white-0);
+    --h4-color: var(--tone-04);
+    --h5-color: var(--tone-04);
+    --h6-color: var(--tone-04);
+    --hr-color: var(--tone-10);
 }
 
 :root[data-theme="lights-on"] {
     --background-color: var(--tone-08);
-    --body-color: var(--tone-08);
-    --h1-color: var(--tone-01);
-    --h2-color: var(--tone-02);
-    --h3-color: var(--tone-03);
+    --body-color: var(--color-light-green-3);
+    --primary-color: var(--color-light-green-1);
+    --secondary-color: var(--color-dark-green-2);
+    --h1-color: var(--color-white-2);
+    --h2-color: var(--color-white-1);
+    --h3-color: var(--color-white-0);
     --h4-color: var(--tone-04);
     --h5-color: var(--tone-04);
     --h6-color: var(--tone-04);
@@ -82,11 +95,41 @@
 
 /* ? Setting colors for website elements */
 /* ! to change color of element, please change color in the themes above ⬆️ */
-body {
+html {
     margin: 0;
     padding: 0;
+    min-width: 100vw;
+    min-height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0rem;
     box-sizing: border-box;
     background-color: var(--body-color);
+    min-width: 101vw;
+    height: 100%;
+    position: absolute;
+    right: -1.5rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+body::before {
+    content: "";
+    background-image: url("https://plus.unsplash.com/premium_photo-1700750447574-193ac9341da2?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGFwZXIlMjB0ZXh0dXJlfGVufDB8fDB8fHww");
+    background-size: 100%;
+    mix-blend-mode: multiply;
+    opacity: 40%;
+    position: absolute;
+    height: 300%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
 
 img {
@@ -124,6 +167,14 @@ ul {
         margin: none;
         padding: none;
     }
+}
+
+a {
+    color: var(--color-yellow-1);
+}
+
+a:hover {
+    color: var(--color-yellow-0);
 }
 
 /* ? Useful classes to reduce code repetition */
@@ -176,7 +227,7 @@ ul {
 
 .page {
     min-height: 100vh;
-    min-width: 90%;
+    min-width: 100%;
     max-width: 90vw;
     padding: var(--padding-3);
     overflow-x: hidden;
@@ -317,7 +368,6 @@ ul {
     left: 0;
 }
 
-/* ______________________________________________ */
 .h-card-outer {
     display: flex;
     flex-direction: row;
@@ -465,107 +515,8 @@ ul {
     /* border-radius: 1rem; */
 }
 
-.sparkle-icon {
-    max-height: 3rem;
-}
-
-#nav-bar {
-    margin-bottom: 3rem;
-    background-color: #c0c0c0;
-    max-height: max(5vh, 5rem);
-    padding: 1rem 3rem;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#nav-bar-user {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.25rem;
-    background: transparent;
-    margin-left: 1.5rem;
-}
-
-#nav-bar-user h4,
-#nav-bar-user h5 {
-    color: var(--h3-color);
-    margin: 0;
-}
-
-.bilbo-swash-caps-regular {
-    font-family: "Bilbo Swash Caps", cursive;
-    font-style: normal;
-}
-
-.corinthia-bold {
-    font-family: "Corinthia", cursive;
-    font-style: normal;
-}
-
-#brand {
-    min-width: 30vw;
-}
-
-.user-dropdown {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    margin-top: 0.5rem;
-    min-width: 12rem;
-    list-style: none;
-    opacity: 0;
-    z-index: 200;
-}
-
-.user-dropdown.open {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: all;
-}
-
-.user-dropdown li a {
-    display: block;
-    padding: 0.8rem 1rem;
-    text-decoration: none;
-    font-size: 1rem;
-    letter-spacing: 0.05rem;
-    border: 2px solid hotpink;
-    min-width: 12vw;
-}
-
-.dropdown-toggle {
-    font-size: 1.2rem;
-    width: 12vw;
-    height: 2.5rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.dropdown-toggle:focus,
-.dropdown-toggle:active {
-    outline: none;
-    box-shadow: none;
-}
 
 
-/* Layout Reset */
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 0;
-}
-
-h1, h2, h3, p {
-    margin: 0 0 10px 0;
-}
-
-
-/* ============================
-   PRODUCT VIEW LAYOUT 
-   ============================ */
 .product-view {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -609,9 +560,6 @@ h1, h2, h3, p {
 }
 
 
-/* ============================
-   GRID LAYOUTS FOR CARDS
-   ============================ */
 .product-grid,
 .category-grid {
     display: grid;
@@ -620,9 +568,6 @@ h1, h2, h3, p {
 }
 
 
-/* ============================
-   COLLECTIONS VIEW
-   ============================ */
 .collection-block {
     margin-bottom: 40px;
 }
@@ -641,9 +586,6 @@ h1, h2, h3, p {
 }
 
 
-/* ============================
-   CATEGORY VIEW
-   ============================ */
 .category-card {
     display: block;
     padding: 20px;
@@ -656,20 +598,9 @@ h1, h2, h3, p {
 }
 
 
-/* ============================
-   RESPONSIVE STACKING
-   ============================ */
 @media (max-width: 768px) {
     .product-view {
         grid-template-columns: 1fr;
     }
 }
 
-
-#tabs {
-    display: flex;
-    flex-flow: row nowrap;
-    gap: 3rem;
-    justify-content: center;
-    align-items: center;
-}
