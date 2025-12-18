@@ -77,7 +77,6 @@
     & span {
         display: flex;
         flex-flow: column nowrap;
-        /*border: 2px solid hotpink;*/
         min-width: calc(49% - 0.6rem);
 
         & > label, input {

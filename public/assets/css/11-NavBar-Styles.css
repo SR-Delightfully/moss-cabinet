@@ -9,6 +9,7 @@
     padding: 1rem 3rem;
     justify-content: space-between;
     align-items: center;
+    min-width: 100vw;
 }
 
 #nav-bar-user {
@@ -78,7 +79,6 @@
     text-decoration: none;
     font-size: 1rem;
     letter-spacing: 0.05rem;
-    border: 2px solid hotpink;
     min-width: 12vw;
 }
 

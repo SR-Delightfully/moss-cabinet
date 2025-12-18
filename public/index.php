@@ -6,6 +6,3 @@ declare(strict_types=1);
 
 // Launch the application's bootstrap process.
 (require_once realpath(__DIR__ . '/../config/bootstrap.php'))->run();
-
-
-//echo 'moss-cabinet running on port 8081';

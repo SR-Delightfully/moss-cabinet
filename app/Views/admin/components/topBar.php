@@ -28,7 +28,7 @@ if (UserContext::isAdmin()) {
             <ul id="tabs">
                 <?php foreach ($tabs as $key => $tab): ?>
                     <li class="tab" id="<?= htmlspecialchars($key) ?>">
-                        <a href="/<?= htmlspecialchars($tab['key']) ?>">
+                        <a href="./<?= htmlspecialchars($tab['key']) ?>">
                             <span class="tab-label">
                                 <?= LocalizationHelper::get("navbar_content.$key") ?>
                             </span>
@@ -50,12 +50,12 @@ if (UserContext::isAdmin()) {
                     </button>
 
                     <ul class="user-dropdown">
-                        <li><a href="/profile"><?= LocalizationHelper::get("user_dropdown_content.option1") ?></a></li>
-                        <li><a href="/wishlist"><?= LocalizationHelper::get("user_dropdown_content.option2") ?></a></li>
-                        <li><a href="/cart"><?= LocalizationHelper::get("user_dropdown_content.option3") ?></a></li>
-                        <li><a href="/orders"><?= LocalizationHelper::get("user_dropdown_content.option4") ?></a></li>
-                        <li><a href="/settings"><?= LocalizationHelper::get("user_dropdown_content.option5") ?></a></li>
-                        <li><a href="/sign-out"><?= LocalizationHelper::get("user_dropdown_content.option6") ?></a></li>
+                        <li><a href="./profile"><?= LocalizationHelper::get("user_dropdown_content.option1") ?></a></li>
+                        <li><a href="./wishlist"><?= LocalizationHelper::get("user_dropdown_content.option2") ?></a></li>
+                        <li><a href="./cart"><?= LocalizationHelper::get("user_dropdown_content.option3") ?></a></li>
+                        <li><a href="./orders"><?= LocalizationHelper::get("user_dropdown_content.option4") ?></a></li>
+                        <li><a href="./settings"><?= LocalizationHelper::get("user_dropdown_content.option5") ?></a></li>
+                        <li><a href="./sign-out"><?= LocalizationHelper::get("user_dropdown_content.option6") ?></a></li>
                     </ul>
 
                     <?php if (!empty($currentUser['user_pfp_src'])): ?>
@@ -75,8 +75,8 @@ if (UserContext::isAdmin()) {
                     </button>
 
                     <ul class="user-dropdown">
-                        <li><a href="/sign-in"><?= LocalizationHelper::get("user_dropdown_content.signintext") ?></a></li>
-                        <li><a href="/sign-up"><?= LocalizationHelper::get("user_dropdown_content.signouttext") ?></a></li>
+                        <li><a href="./sign-in"><?= LocalizationHelper::get("user_dropdown_content.signintext") ?></a></li>
+                        <li><a href="./sign-up"><?= LocalizationHelper::get("user_dropdown_content.signouttext") ?></a></li>
                     </ul>
                 <?php endif; ?>
             </div>
