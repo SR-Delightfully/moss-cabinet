@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Domain\Models\UsersModel;
+use App\Domain\Models\UserModel;
 
 use DI\Container;
 use LDAP\Result;
@@ -13,7 +13,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 class UsersController extends BaseController
 {
 
-    public function __construct(Container $container, private UsersModel $users_model)
+    public function __construct(Container $container, private UserModel $users_model)
     {
         parent::__construct($container); //pass the container to the parent
 

@@ -27,5 +27,14 @@ return [
         "fname" => "First Name",
         "lname" => "Last Name",
         "phone" => "Phone Number"   
-    ]
+    ],
+     'admin_sidebar' => [
+        'dashboard' => 'Dashboard',
+        'management' => 'Management',
+        'users' => 'Users',
+        'products' => 'Products',
+        'create_product' => 'Create Product',
+        'categories' => 'Categories',
+        'create_category' => 'Create Category',
+    ],
 ];

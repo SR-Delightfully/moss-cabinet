@@ -2,39 +2,41 @@
 
 namespace App\Controllers;
 
-use App\Helpers\SessionManager;
+use App\Domain\Models\DashboardModel;
 use DI\Container;
-use LDAP\Result;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 class DashboardController extends BaseController
 {
-    public function __construct(Container $container) //then add model param
+    protected DashboardModel $dashboardModel;
+
+    public function __construct(Container $container, DashboardModel $dashboardModel)
     {
-        parent::__construct($container);
+        parent::__construct($container); 
+        $this->dashboardModel = $dashboardModel;
     }
+public function index(Request $request, Response $response): Response
+{
+    $tables = $this->dashboardModel->getDashboardData();
 
-    //* Step 1) Add a route handler/request handler (controller method : callback method)
-    public function index(Request $request, Response $response, array $args): Response
-    {
-        //! Process the request: we might need to interact with the model
+    $data = [
+        'page_title' => 'Admin Dashboard',
+        'tables'     => $tables,
+    ];
 
-        $data = [""];
+    // Capture dashboard content
+    ob_start();
+    require APP_VIEWS_PATH . '/admin/dashboardView.php';
+    $adminContent = ob_get_clean();
 
-        //* Write a key-value
-        SessionManager::set('username', "ash-a9236");
+    // Include the header (layout + sidebar + topbar)
+    ob_start();
+    require APP_VIEWS_PATH . '/admin/adminHeader.php';
+    $html = ob_get_clean();
 
-        //* Render a view (OR we can redirect the request to another view)
-        return $this->render($response, 'admin/dashboardView.php', $data);
+    $response->getBody()->write($html);
+    return $response;
+}
 
-        //* Server side redirection to a named route:
-        // return $this->redirect($request, $response, 'products.index');
-    }
-
-
-    public function error(Request $request, Response $response, array $args): Response
-    {
-        return $this->render($response, 'errorView.php');
-    }
 }
