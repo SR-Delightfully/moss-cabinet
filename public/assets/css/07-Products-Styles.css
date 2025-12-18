@@ -1,0 +1,18 @@
+.filter-group {
+    margin: 0 2rem;
+}
+
+.filter-group > select, .filter-group > select > option {
+    outline: none;
+    border: none;
+    background-color: var(--color-light-teal-1);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    color: #ddd;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 1rem;
+}

@@ -3,15 +3,15 @@
 use App\Helpers\UserContext;
 use App\Helpers\LocalizationHelper;
 
-$currentUser = UserContext::getCurrentUser();
+$currentUser = UserContext ::getCurrentUser();
 
 $tabs = [
     'collections' => ['key' => 'collections'],
-    'categories'  => ['key' => 'categories'],
-    'products'    => ['key' => 'products'],
+    'categories' => ['key' => 'categories'],
+    'products' => ['key' => 'products'],
 ];
 
-if (UserContext::isAdmin()) {
+if (UserContext ::isAdmin()) {
     $tabs = ['admin' => ['key' => 'admin']] + $tabs;
 }
 ?>
@@ -30,7 +30,7 @@ if (UserContext::isAdmin()) {
                     <li class="tab" id="<?= htmlspecialchars($key) ?>">
                         <a href="/<?= htmlspecialchars($tab['key']) ?>">
                             <span class="tab-label">
-                                <?= LocalizationHelper::get("navbar_content.$key") ?>
+                                <?= LocalizationHelper ::get("navbar_content.$key") ?>
                             </span>
                         </a>
                     </li>
@@ -46,24 +46,24 @@ if (UserContext::isAdmin()) {
                     </h4>
 
                     <button class="dropdown-toggle" id="drop-down">
-                        User dropdown ➤
+                        User dropdown
                     </button>
 
                     <ul class="user-dropdown">
-                        <li><a href="/profile"><?= LocalizationHelper::get("user_dropdown_content.option1") ?></a></li>
-                        <li><a href="/wishlist"><?= LocalizationHelper::get("user_dropdown_content.option2") ?></a></li>
-                        <li><a href="/cart"><?= LocalizationHelper::get("user_dropdown_content.option3") ?></a></li>
-                        <li><a href="/orders"><?= LocalizationHelper::get("user_dropdown_content.option4") ?></a></li>
-                        <li><a href="/settings"><?= LocalizationHelper::get("user_dropdown_content.option5") ?></a></li>
-                        <li><a href="/sign-out"><?= LocalizationHelper::get("user_dropdown_content.option6") ?></a></li>
+                        <li><a href="/profile"><?= LocalizationHelper ::get("Profile") ?></a></li>
+                        <li><a href="/wishlist"><?= LocalizationHelper ::get("Wishlist") ?></a></li>
+                        <li><a href="/cart"><?= LocalizationHelper ::get("Cart") ?></a></li>
+                        <li><a href="/orders"><?= LocalizationHelper ::get("Orders") ?></a></li>
+                        <li><a href="/settings"><?= LocalizationHelper ::get("Settings") ?></a></li>
+                        <li><a href="/sign-out"><?= LocalizationHelper ::get("Sign out") ?></a></li>
                     </ul>
 
                     <?php if (!empty($currentUser['user_pfp_src'])): ?>
                         <a href="/profile">
                             <img
-                                id="pfp"
-                                src="<?= htmlspecialchars($currentUser['user_pfp_src']) ?>"
-                                alt="Profile picture"
+                                    id="pfp"
+                                    src="<?= htmlspecialchars($currentUser['user_pfp_src']) ?>"
+                                    alt="Profile picture"
                             >
                         </a>
                     <?php endif; ?>
@@ -75,8 +75,10 @@ if (UserContext::isAdmin()) {
                     </button>
 
                     <ul class="user-dropdown">
-                        <li><a href="/sign-in"><?= LocalizationHelper::get("user_dropdown_content.signintext") ?></a></li>
-                        <li><a href="/sign-up"><?= LocalizationHelper::get("user_dropdown_content.signouttext") ?></a></li>
+                        <li><a href="/sign-in"><?= LocalizationHelper ::get("user_dropdown_content.signintext") ?></a>
+                        </li>
+                        <li><a href="/sign-up"><?= LocalizationHelper ::get("user_dropdown_content.signouttext") ?></a>
+                        </li>
                     </ul>
                 <?php endif; ?>
             </div>
