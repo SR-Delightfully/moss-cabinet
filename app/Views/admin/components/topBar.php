@@ -20,7 +20,7 @@ if (UserContext::isAdmin()) {
     <nav id="nav-bar" class="display-flex-row">
         <a id="brand" class="bilbo-swash-caps-regular" href="home">
             <h1>M<i class="corinthis-bold">oss</i> C<i class="corinthis-bold">abinet</i></h1>
-        </a>
+        </a>f
 
         <img class="sparkle-icon" src="https://svgsilh.com/svg/35893.svg" alt="sparkle">
 
