@@ -47,14 +47,14 @@ if (UserContext::isLoggedIn() && UserContext::isAdmin()) {
         <div id="nav-bar-user" class="display-flex-col">
             <?php if ($currentUser): ?>
                 <h4>Merry meet, <?= htmlspecialchars($currentUser['user_first_name'] ?? 'Guest') ?> <?= htmlspecialchars($currentUser['user_last_name'] ?? '') ?>!</h4>
-                <button class="dropdown-toggle" id="drop-down">User dropdown ➤</button>
+                <button class="dropdown-toggle" id="drop-down">User dropdown</button>
                 <ul class="user-dropdown">
-                    <li><a href="profile"><?= LocalizationHelper::get("user_dropdown_content.option1") ?></a></li>
-                    <li><a href="wishlist"><?= LocalizationHelper::get("user_dropdown_content.option2") ?></a></li>
-                    <li><a href="cart"><?= LocalizationHelper::get("user_dropdown_content.option3") ?></a></li>
-                    <li><a href="orders"><?= LocalizationHelper::get("user_dropdown_content.option4") ?></a></li>
-                    <li><a href="settings"><?= LocalizationHelper::get("user_dropdown_content.option5") ?></a></li>
-                    <li><a href="sign-out"><?= LocalizationHelper::get("user_dropdown_content.option6") ?></a></li>
+                    <li><a href="/profile"><?= LocalizationHelper ::get("Profile") ?></a></li>
+                    <li><a href="/wishlist"><?= LocalizationHelper ::get("Wishlist") ?></a></li>
+                    <li><a href="/cart"><?= LocalizationHelper ::get("Cart") ?></a></li>
+                    <li><a href="/orders"><?= LocalizationHelper ::get("Orders") ?></a></li>
+                    <li><a href="/settings"><?= LocalizationHelper ::get("Settings") ?></a></li>
+                    <li><a href="/sign-out"><?= LocalizationHelper ::get("Sign out") ?></a></li>
                 </ul>
 
                 <?php if (!empty($currentUser['user_pfp_src'])): ?>

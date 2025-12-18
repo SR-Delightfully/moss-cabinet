@@ -1,17 +1,15 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Domain\Models;
 
 use App\Helpers\Core\PDOService;
 use PDO;
 
-class UserModel extends BaseModel
-{
-    public function __construct(PDOService $pdo)
-    {
-        parent::__construct($pdo);
+class UserModel extends BaseModel {
+    public function __construct (PDOService $pdo) {
+        parent ::__construct($pdo);
     }
 
     /**
@@ -20,8 +18,7 @@ class UserModel extends BaseModel
      * @param array $data
      * @return int  The ID of the newly created user.
      */
-    public function createUser(array $data): int
-    {
+    public function createUser (array $data): int {
         // Hash password
         $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
 
@@ -33,18 +30,18 @@ class UserModel extends BaseModel
         ";
 
         $params = [
-            ':username'   => $data['username'],
+            ':username' => $data['username'],
             ':first_name' => $data['first_name'],
-            ':last_name'  => $data['last_name'],
-            ':email'      => $data['email'],
-            ':password'   => $hashedPassword,
+            ':last_name' => $data['last_name'],
+            ':email' => $data['email'],
+            ':password' => $hashedPassword,
         ];
 
         // Use BaseModel::execute()
-        $this->execute($sql, $params);
+        $this -> execute($sql, $params);
 
         // Return last inserted ID
-        return (int)$this->pdo->lastInsertId();
+        return (int)$this -> pdo -> lastInsertId();
     }
 
     /**
@@ -53,8 +50,7 @@ class UserModel extends BaseModel
      * @param string $email
      * @return array|null
      */
-    public function findByEmail(string $email): ?array
-    {
+    public function findByEmail (string $email): ?array {
         $sql = "
             SELECT * 
             FROM users 
@@ -62,7 +58,7 @@ class UserModel extends BaseModel
             LIMIT 1
         ";
 
-        $result = $this->selectOne($sql, [':email' => $email]);
+        $result = $this -> selectOne($sql, [':email' => $email]);
         return $result ?: null;
     }
 
@@ -72,8 +68,7 @@ class UserModel extends BaseModel
      * @param string $username
      * @return array|null
      */
-    public function findByUsername(string $username): ?array
-    {
+    public function findByUsername (string $username): ?array {
         $sql = "
             SELECT * 
             FROM users 
@@ -81,7 +76,7 @@ class UserModel extends BaseModel
             LIMIT 1
         ";
 
-        $result = $this->selectOne($sql, [':username' => $username]);
+        $result = $this -> selectOne($sql, [':username' => $username]);
         return $result ?: null;
     }
 
@@ -90,9 +85,20 @@ class UserModel extends BaseModel
      *
      * @return array
      */
-    public function getUsers(): array
-    {
+    public function getUsers (): array {
         $sql = "SELECT * FROM users";
-        return $this->selectAll($sql);
+        return $this -> selectAll($sql);
     }
+    public function getUserCartItems (string $user_id) : array {
+        $sql = "SELECT * FROM `cart_items` WHERE `user_id` = ?";
+        $cart = $this -> selectAll($sql, [$user_id]);
+        return $cart ?: [];
+    }
+
+    public function getAllPastOrders (string $user_id) : array {
+        $sql = "SELECT * FROM `orders` WHERE `user_id` = ? AND order_created_at > DATE(NOW())";
+        $past_orders = $this -> selectAll($sql, [$user_id]);
+        return $past_orders ?: [];
+    }
+
 }

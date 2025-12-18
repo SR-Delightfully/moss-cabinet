@@ -1,4 +1,5 @@
 <?php
+
 use App\Helpers\LocalizationHelper;
 use App\Helpers\UserContext;
 
@@ -7,18 +8,18 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Initialize session and current user
-UserContext::init();
-$currentUser = UserContext::getCurrentUser();
+UserContext ::init();
+$currentUser = UserContext ::getCurrentUser();
 $currentLang = $_SESSION['lang'] ?? 'en';
 
 // Set language
-LocalizationHelper::setLanguage($currentLang);
+LocalizationHelper ::setLanguage($currentLang);
 
 // Define tabs
 $column1 = [
     'collections' => ['key' => 'collections'],
-    'categories'  => ['key' => 'categories'],
-    'products'    => ['key' => 'products'],
+    'categories' => ['key' => 'categories'],
+    'products' => ['key' => 'products'],
 ];
 $column2 = [
     "profile" => ['key' => 'Profile'],
@@ -30,47 +31,53 @@ $column2 = [
 
 $tabs = $column1 + $column2;
 
-if (UserContext::isLoggedIn() && UserContext::isAdmin()) {
+if (UserContext ::isLoggedIn() && UserContext ::isAdmin()) {
     $tabs = ['admin' => ['key' => 'admin']] + $tabs;
 }
 
 // Add admin panel tab if user is admin
-if (UserContext::isLoggedIn() && UserContext::isAdmin()) {
+if (UserContext ::isLoggedIn() && UserContext ::isAdmin()) {
     $tabs = ['admin' => ['key' => 'admin']] + $tabs;
 }
 ?>
 
-<footer id="footer-bar">
-
-</footer>
-    <div id="footer-content" class="display-flex-row">
-        <ul id="tabs">
-            <?php foreach ($column1 as $key => $tab): ?>
-                <li id="<?= $key ?>" class="tab">
-                    <a href="./<?= $tab['key'] ?>">
-                        <span class="tab-label"><?= LocalizationHelper::get("navbar_content." . $tab['key']) ?></span>
-                    </a>
-                </li>
-            <?php endforeach; ?>
-                        <?php foreach ($column2 as $key => $tab): ?>
-                <li id="<?= $key ?>" class="tab">
-                    <a href="./<?= $tab['key'] ?>">
-                        <span class="tab-label"><?= LocalizationHelper::get("user_dropdown_content." . $tab['key']) ?></span>
-                    </a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
 </nav>
 </body>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const toggle = document.getElementById("drop-down");
-    const menu   = document.querySelector(".user-dropdown");
 
-    toggle.addEventListener("click", () => {
-        menu.classList.toggle("open");
+<footer id="footer-bar">
+    <div id="footer-content" class="display-flex-row">
+        <div id="footer-column-A">
+            <ul id="tabs">
+                <?php foreach ($column1 as $key => $tab): ?>
+                    <li id="<?= $key ?>" class="tab">
+                        <a href="./<?= $tab['key'] ?>">
+                            <span class="tab-label"><?= LocalizationHelper ::get("navbar_content." . $tab['key']) ?></span>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+
+        </div>
+        <div id="footer-column-B">
+            <?php foreach ($column2 as $key => $tab): ?>
+                <li id="<?= $key ?>" class="tab">
+                    <a href="./<?= $tab['key'] ?>">
+                        <span class="tab-label"><?= LocalizationHelper ::get("user_dropdown_content." . $tab['key']) ?></span>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+            </ul>
+
+        </div>
+    </div>
+</footer>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const toggle = document.getElementById("drop-down");
+        const menu = document.querySelector(".user-dropdown");
+
+        toggle.addEventListener("click", () => {
+            menu.classList.toggle("open");
+        });
     });
-});
 </script>
 </html>
