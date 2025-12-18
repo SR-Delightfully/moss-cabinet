@@ -13,7 +13,8 @@ class SessionMiddleware implements MiddlewareInterface
     public function process(
         Request $request,
         Handler $handler
-    ): Response {
+    ): Response
+    {
         // Start session using SessionManager
         SessionManager::start();
 

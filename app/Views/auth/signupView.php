@@ -7,8 +7,6 @@ $page_title = 'Welcome to Moss Cabinet!';
 ViewHelper ::loadHeader($page_title);
 ?>
 <div class="components-full-page-wrapper">
-    <p>Hello sign up page!</p>
-
     <div id="signup-form">
         <div class="form-section" id="signup-form-section">
             <form method="POST" action="./sign-up">

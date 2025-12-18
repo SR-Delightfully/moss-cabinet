@@ -6,7 +6,7 @@ $currentUser = UserContext::getCurrentUser();
 ?>
 
 <!DOCTYPE html>
-<html lang="en" data-theme="lights-on">
+<html lang="en" data-theme="lights-off">
 
 <head>
     <meta charset="UTF-8">

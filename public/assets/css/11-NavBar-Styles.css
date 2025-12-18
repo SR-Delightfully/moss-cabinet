@@ -1,7 +1,10 @@
 
 #nav-bar {
     margin-bottom: 3rem;
-    background-color: #c0c0c0;
+    background-color: var(--primary-color);
+    background: linear-gradient(360deg, var(--primary-color), var(--secondary-color) ) ;
+    border-bottom: 2px solid var(--color-yellow-0);
+    box-shadow: 0px 0px 0px 2px var(--color-yellow-2), 0px 0px 0px 3px var(--color-yellow-0), 0px 0px 8px 2px var(--color-purple-0);
     max-height: max(5vh, 5rem);
     padding: 1rem 3rem;
     justify-content: space-between;
@@ -32,10 +35,21 @@
 .corinthia-bold {
     font-family: "Corinthia", cursive;
     font-style: normal;
+
 }
 
 #brand {
     min-width: 30vw;
+}
+
+#brand h1 {
+    color: var(--h1-color);
+    margin: 0;
+}
+    
+    
+#brand h1 > i {
+    color: var(--h2-color);
 }
 
 .user-dropdown {
@@ -84,10 +98,11 @@
 
 /* Layout Reset */
 .container {
-    width: 90%;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 0 !important;
+    /* padding: 20px 0; */
 }
 
 h1, h2, h3, p {
@@ -95,7 +110,10 @@ h1, h2, h3, p {
 }
 
 .sparkle-icon {
-    max-height: 3rem;
+    width: 3rem;
+    height: 3rem;
+    color: var(--color-yellow-1);
+    filter: invert(47%) sepia(91%) saturate(400%) hue-rotate(2deg) brightness(90%) contrast(90%);
 }
 
 #tabs {

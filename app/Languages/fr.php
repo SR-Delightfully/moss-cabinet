@@ -19,7 +19,7 @@ return [
         "signintext" => "Vous avez deja une compte?",
         "signouttext" => "Vous n'avez pas une compte?",
     ],
-        'auth_content' => [
+    'auth_content' => [
         "email" => "Courriel",
         "username" => "Pseudonyme",
         "password" => "Mot de Passe",
@@ -27,5 +27,14 @@ return [
         "fname" => "Prénom",
         "lname" => "Nom",
         "phone" => "Numero Téléphone"
-    ]
+    ],
+    'admin_sidebar' => [
+    'dashboard' => 'Tableau de bord',
+    'management' => 'Gestion',
+    'users' => 'Utilisateurs',
+    'products' => 'Produits',
+    'create_product' => 'Créer un produit',
+    'categories' => 'Catégories',
+    'create_category' => 'Créer une catégorie',
+],
 ];
