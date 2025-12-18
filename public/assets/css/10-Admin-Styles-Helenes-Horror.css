@@ -1,0 +1,6 @@
+.admin-dashboard-wrapper {
+    z-index: 999;
+    width: 90%;
+    height: 50rem;
+    background-color: hotpink;
+}
