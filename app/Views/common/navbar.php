@@ -6,22 +6,18 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Initialize session and current user
 UserContext::init();
 $currentUser = UserContext::getCurrentUser();
 $currentLang = $_SESSION['lang'] ?? 'en';
 
-// Set language
 LocalizationHelper::setLanguage($currentLang);
 
-// Define tabs
 $tabs = [
     'collections' => ['key' => 'collections'],
     'categories'  => ['key' => 'categories'],
     'products'    => ['key' => 'products'],
 ];
 
-// Add admin panel tab if user is admin
 if (UserContext::isLoggedIn() && UserContext::isAdmin()) {
     $tabs = ['admin' => ['key' => 'admin']] + $tabs;
 }

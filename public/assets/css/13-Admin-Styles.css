@@ -1,96 +1,143 @@
 #admin-layout {
-    border: 2px solid hotpink;
-  overflow: hidden;
-  display: grid;
-  height: 100vh;
-  min-width: calc(100% - 5px);
-  max-width: 100vw;
-  grid-template-columns: 10.5% auto auto;
-  grid-template-rows: 5% auto auto;
-  grid-gap: 1.4rem;
-  grid-template-areas:
-    "atb atb atb"
-    "asb ac ac"
-    "asb ac ac";
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    grid-template-rows: 64px 1fr;
+    grid-template-areas:
+        "topbar topbar"
+        "sidebar main";
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--body-color);
 }
-#admin-top-bar {  
-    grid-area: atb;
+
+#admin-top-bar {
+    grid-area: topbar;
     background-color: var(--primary-color);
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    border-bottom: 1px solid var(--tone-04);
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    z-index: 10;
 }
 
-#admin-side-bar {  
-    grid-area: asb;
-    background-color: var(--primary-color);
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+#admin-side-bar {
+    grid-area: sidebar;
+    background-color: var(--secondary-color);
+    color: var(--h3-color);
+    padding: 1.25rem 1rem;
+    overflow-y: auto;
+    border-right: 1px solid var(--tone-04);
 }
 
-#admin-side-content {  
-    grid-area: ac;
-    background-color: var(--primary-color);
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+#admin-side-content {
+    grid-area: main;
+    padding: 2rem;
+    overflow-y: auto;
+    background-color: var(--background-color);
+    display: grid;
 }
 
+.admin-page-title,
+.fancy-title {
+    font-family: 'Bilbo Swash Caps', cursive;
+    font-size: 2.6rem;
+    color: var(--h1-color);
+    margin: 0;
+}
+
+#summary-cards ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.25rem;
+    padding: 0;
+    margin: 0;
+}
+
+#summary-cards li {
+    list-style: none;
+}
+
+.summary-mini-card {
+    background-color: var(--admin-card);
+    border-left: 4px solid var(--admin-accent);
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.summary-mini-card h3 {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--admin-muted);
+    margin: 0 0 0.25rem;
+}
+
+.summary-mini-card p {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--h1-color);
+    margin: 0;
+}
+
+#kpi-charts ul {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 2rem;
+padding: 0;
+margin: 0;
+}
+
+#kpi-charts li { list-style: none; }
+
+#kpi-charts canvas { max-height: 220px; }
 
 
-/* _________________________________________________________________________ */
-.admin-dashboard {
-        padding: 2rem;
+.mini-activity-list {
+padding: 0;
+margin: 0;
+list-style: none;
+}
+.mini-activity-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.35rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.mini-activity-list li:last-child {
+    border-bottom: none;
+}
+.square-deco-container {
+    background-color: var(--admin-panel);
+    border-radius: 0.75rem;
+}
+
+table.table {
+    width: 100%;
+    font-size: 0.85rem;
+    background-color: transparent;
+    color: var(--h3-color);
+}
+
+table thead th {
+    background-color: transparent;
+    color: var(--admin-muted);
+    border-bottom: 2px solid var(--admin-border);
+}
+
+table tbody tr:hover {
+    background-color: rgba(255,255,255,0.04);
+}
+
+@media (max-width: 1024px) {
+    #admin-layout {
+        grid-template-columns: 64px 1fr;
     }
 
-    .dashboard-title {
-        margin-bottom: 2rem;
-        font-size: 2rem;
-        font-weight: bold;
-    }
-
-    .dashboard-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .dashboard-card {
-        background: #f7f7f7;
+    #admin-side-content {
         padding: 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.08);
     }
-
-    .dashboard-card h2 {
-        margin-bottom: 1rem;
-        font-size: 1.2rem;
-    }
-
-    .dashboard-list {
-        list-style: none;
-        padding: 0;
-    }
-
-    .dashboard-list li {
-        margin-bottom: 1rem;
-    }
-
-    .dashboard-list a {
-        text-decoration: none;
-        color: #333;
-        display: block;
-        padding: 0.5rem;
-        border-radius: 6px;
-        transition: backgroundcolor 0.15s ease;
-    }
-
-    .dashboard-list a:hover {
-        background: #eaeaea;
-    }
-
-    small {
-        opacity: 0.7;
-    }
-
-    .admin-dashboard-wrapper {
-    z-index: 999;
-    width: 90%;
-    height: 50rem;
-    background-color: hotpink !important;
 }
