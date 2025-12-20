@@ -1,0 +1,12 @@
+#footer-content {
+    border-top: 2px solid var(--color-yellow-0);
+    padding: 3rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+#footer-column-A, #footer-column-B {
+    display: flex;
+    flex-flow: column wrap;
+}

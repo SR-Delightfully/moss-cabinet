@@ -3,15 +3,15 @@
 use App\Helpers\UserContext;
 use App\Helpers\LocalizationHelper;
 
-$currentUser = UserContext::getCurrentUser();
+$currentUser = UserContext ::getCurrentUser();
 
 $tabs = [
     'collections' => ['key' => 'collections'],
-    'categories'  => ['key' => 'categories'],
-    'products'    => ['key' => 'products'],
+    'categories' => ['key' => 'categories'],
+    'products' => ['key' => 'products'],
 ];
 
-if (UserContext::isAdmin()) {
+if (UserContext ::isAdmin()) {
     $tabs = ['admin' => ['key' => 'admin']] + $tabs;
 }
 ?>
@@ -30,7 +30,7 @@ if (UserContext::isAdmin()) {
                     <li class="tab" id="<?= htmlspecialchars($key) ?>">
                         <a href="./<?= htmlspecialchars($tab['key']) ?>">
                             <span class="tab-label">
-                                <?= LocalizationHelper::get("navbar_content.$key") ?>
+                                <?= LocalizationHelper ::get("navbar_content.$key") ?>
                             </span>
                         </a>
                     </li>
@@ -46,7 +46,7 @@ if (UserContext::isAdmin()) {
                     </h4>
 
                     <button class="dropdown-toggle" id="drop-down">
-                        User dropdown ➤
+                        User dropdown
                     </button>
 
                     <ul class="user-dropdown">
@@ -61,9 +61,9 @@ if (UserContext::isAdmin()) {
                     <?php if (!empty($currentUser['user_pfp_src'])): ?>
                         <a href="/profile">
                             <img
-                                id="pfp"
-                                src="<?= htmlspecialchars($currentUser['user_pfp_src']) ?>"
-                                alt="Profile picture"
+                                    id="pfp"
+                                    src="<?= htmlspecialchars($currentUser['user_pfp_src']) ?>"
+                                    alt="Profile picture"
                             >
                         </a>
                     <?php endif; ?>
