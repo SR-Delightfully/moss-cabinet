@@ -13,12 +13,12 @@ function is_active_path(string $path, string $currentPath): bool
 
 <aside id="admin-side-bar">
     <div class="position-sticky pt-3">
-        <ul class="nav flex-column">
+        <ul id="admin-tabs" class="nav">
 
-            <li class="admin-menu-tab">
-                <strong class="small text-muted">
+            <li class="admin-menu-section">
+                <span class="text-uppercase">
                     <?= LocalizationHelper::get('navbar_content.admin') ?>
-                </strong>
+                </span>
             </li>
 
             <li class="admin-menu-tab">
@@ -27,8 +27,8 @@ function is_active_path(string $path, string $currentPath): bool
                 </a>
             </li>
 
-            <li class="admin-menu-tab">
-                <span class="text-uppercase text-muted small">
+            <li class="admin-menu-section">
+                <span class="text-uppercase">
                     <?= LocalizationHelper::get('admin_sidebar.management') ?>
                 </span>
             </li>

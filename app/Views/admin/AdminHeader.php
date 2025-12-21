@@ -30,6 +30,8 @@ if (!UserContext::isAdmin()) {
 
     <!-- Global & Admin Styles -->
     <link rel="stylesheet" href="./public/assets/css/00-Global-Styles.css">
+    <link rel="stylesheet" href="./public/assets/css/02-Home-Styles.css">
+
     <link rel="stylesheet" href="./public/assets/css/11-Navbar-Styles.css">
     <link rel="stylesheet" href="./public/assets/css/12-Footer-Styles.css">
     <link rel="stylesheet" href="./public/assets/css/13-Admin-styles.css">
@@ -62,5 +64,34 @@ if (!UserContext::isAdmin()) {
 use App\Helpers\ViewHelper;
 ViewHelper::loadJsScripts();
 ?>
+
+
+<?php if ($charts): ?>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+<?php foreach ($charts as $chart): ?>
+<?php if (!empty($chart['data'])): ?>
+new Chart(
+    document.getElementById('<?= $chart['id'] ?>'),
+    {
+        type: '<?= $chart['type'] ?>',
+        data: {
+            labels: <?= json_encode(array_keys($chart['data'])) ?>,
+            datasets: [{
+                label: <?= json_encode($chart['label']) ?>,
+                data: <?= json_encode(array_values($chart['data'])) ?>,
+                backgroundColor: 'rgba(32,178,170,0.45)',
+                borderColor: 'rgba(32,178,170,1)',
+                borderWidth: 1,
+            }]
+        },
+        options: { responsive: true }
+    }
+);
+<?php endif; ?>
+<?php endforeach; ?>
+</script>
+<?php endif; ?>
+
 </body>
 </html>

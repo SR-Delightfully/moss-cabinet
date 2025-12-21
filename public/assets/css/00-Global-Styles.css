@@ -98,25 +98,22 @@
 html {
     margin: 0;
     padding: 0;
-    min-width: 100vw;
+    min-width: 100%;
     min-height: 100%;
-    position: absolute;
-    right: 0;
-    top: 0;
-    overflow: hidden;
+    overflow-x: hidden;
 }
-
 body {
     margin: 0;
-    padding: 0rem;
+    padding: 0;
+    min-width: 100%;
+    position: static;
+    overflow-x: hidden;
     box-sizing: border-box;
     background-color: var(--body-color);
-    min-width: 101vw;
     height: 100%;
-    position: absolute;
-    right: -1.5rem;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: scroll !important;
+
 }
 body::before {
     content: "";
