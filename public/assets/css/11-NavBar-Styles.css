@@ -151,7 +151,7 @@ h1, h2, h3, p {
     padding: 1.6rem;
     text-align: center;
     border-radius: 1rem;
-    border: 2px solid var(--color-yellow-0);
+    border: 2px solid var(--secondary-color);
     line-height: 2rem;
     line-height: 0;
         
