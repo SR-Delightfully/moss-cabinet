@@ -15,7 +15,7 @@ class DashboardModel extends BaseModel
         ];
     }
 
-    public function getRecentProducts(int $limit = 5): array
+    public function getRecentProducts(int $limit = 6): array
     {
         return $this->selectAll("
             SELECT 

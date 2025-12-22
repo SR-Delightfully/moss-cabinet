@@ -46,6 +46,10 @@ return static function(Slim\App $app): void {
     //* Base URI: localhost/3d-models-app/admin
     $app -> group('/admin', function($group) {
         //Add/register admin routes
+        $group->post('/crud/{table}/create', [AdminController::class, 'create']);
+        $group->post('/crud/{table}/{id}/update', [AdminController::class, 'update']);
+        $group->post('/crud/{table}/{id}/delete', [AdminController::class, 'delete']);
+
         $group -> get('', [DashboardController::class, 'index']) -> setName('dashboard.index');
         $group -> get('/', [DashboardController::class, 'index']) -> setName('dashboard.index');
         $group -> get('/users', [UsersController::class, 'index']) -> setName('products.index');
