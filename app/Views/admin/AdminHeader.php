@@ -30,42 +30,13 @@ if (!UserContext::isAdmin()) {
 
     <!-- Global & Admin Styles -->
     <link rel="stylesheet" href="./public/assets/css/00-Global-Styles.css">
+    <link rel="stylesheet" href="./public/assets/css/02-Home-Styles.css">
+
     <link rel="stylesheet" href="./public/assets/css/11-Navbar-Styles.css">
     <link rel="stylesheet" href="./public/assets/css/12-Footer-Styles.css">
     <link rel="stylesheet" href="./public/assets/css/13-Admin-styles.css">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="./public/assets/css/00-Global-Styles.css">
-    <link rel="stylesheet" href="./public/assets/css/01-Authorization-Styles.css">
-    <link rel="stylesheet" href="./public/assets/css/02-Home-Styles.css">
-    <link rel="stylesheet" href="./public/assets/css/03-Profile-Styles.css">
-    <link rel="stylesheet" href="./public/assets/css/04-Cart-Styles.css">
-    <link rel="stylesheet" href="./public/assets/css/05-Categories-Styles.css">
-    <link rel="stylesheet" href="./public/assets/css/06-Collections-Styles.css">
-    <link rel="stylesheet" href="./public/assets/css/07-Products-Styles.css">
-    <link rel="stylesheet" href="./public/assets/css/08-Product-Styles.css">
-    <link rel="stylesheet" href="./public/assets/css/09-Settings-Styles.css">
-    <link rel="stylesheet" href="./public/assets/css/10-Admin-Styles.css">
-    <link rel="stylesheet" href="./public/assets/css/10-Admin-Styles-Helenes-Horror.css">
-    <link rel="stylesheet" href="./public/assets/css/11-NavBar-Styles.css">
-    <link rel="stylesheet" href="./public/assets/css/12-NavBar-styles.css">
-
-    <!--    for the files to be able to work with nginx :P-->
-    <link rel="stylesheet" href="/assets/css/00-Global-Styles.css">
-    <link rel="stylesheet" href="/assets/css/01-Authorization-Styles.css">
-    <link rel="stylesheet" href="/assets/css/02-Home-Styles.css">
-    <link rel="stylesheet" href="/assets/css/03-Profile-Styles.css">
-    <link rel="stylesheet" href="/assets/css/04-Cart-Styles.css">
-    <link rel="stylesheet" href="/assets/css/05-Categories-Styles.css">
-    <link rel="stylesheet" href="/assets/css/06-Collections-Styles.css">
-    <link rel="stylesheet" href="/assets/css/07-Products-Styles.css">
-    <link rel="stylesheet" href="/assets/css/08-Product-Styles.css">
-    <link rel="stylesheet" href="/assets/css/09-Settings-Styles.css">
-    <link rel="stylesheet" href="/assets/css/10-Admin-Styles.css">
-    <link rel="stylesheet" href="/assets/css/10-Admin-Styles-Helenes-Horror.css">
-    <link rel="stylesheet" href="/assets/css/11-NavBar-Styles.css">
-    <link rel="stylesheet" href="/assets/css/12-NavBar-styles.css">
-
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Bilbo+Swash+Caps&family=Bonheur+Royale&display=swap" rel="stylesheet">
@@ -93,5 +64,34 @@ if (!UserContext::isAdmin()) {
 use App\Helpers\ViewHelper;
 ViewHelper::loadJsScripts();
 ?>
+
+
+<?php if ($charts): ?>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+<?php foreach ($charts as $chart): ?>
+<?php if (!empty($chart['data'])): ?>
+new Chart(
+    document.getElementById('<?= $chart['id'] ?>'),
+    {
+        type: '<?= $chart['type'] ?>',
+        data: {
+            labels: <?= json_encode(array_keys($chart['data'])) ?>,
+            datasets: [{
+                label: <?= json_encode($chart['label']) ?>,
+                data: <?= json_encode(array_values($chart['data'])) ?>,
+                backgroundColor: 'rgba(32,178,170,0.45)',
+                borderColor: 'rgba(32,178,170,1)',
+                borderWidth: 1,
+            }]
+        },
+        options: { responsive: true }
+    }
+);
+<?php endif; ?>
+<?php endforeach; ?>
+</script>
+<?php endif; ?>
+
 </body>
 </html>

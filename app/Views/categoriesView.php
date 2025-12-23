@@ -52,4 +52,3 @@ $message = $data['message'] ?? '';
         </section>
     <?php endforeach; ?>
 </div>
-

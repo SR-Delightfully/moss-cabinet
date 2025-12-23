@@ -48,4 +48,4 @@ class HomeController extends BaseController
     {
         return $this->render($response, 'errorView.php');
     }
-}
+}   

@@ -13,30 +13,53 @@ class DashboardController extends BaseController
 
     public function __construct(Container $container, DashboardModel $dashboardModel)
     {
-        parent::__construct($container); 
+        parent::__construct($container);
         $this->dashboardModel = $dashboardModel;
     }
-public function index(Request $request, Response $response): Response
-{
-    $tables = $this->dashboardModel->getDashboardData();
 
-    $data = [
-        'page_title' => 'Admin Dashboard',
-        'tables'     => $tables,
-    ];
+    public function index(Request $request, Response $response): Response
+    {
+        $tables = $this->dashboardModel->getDashboardData();
 
-    // Capture dashboard content
-    ob_start();
-    require APP_VIEWS_PATH . '/admin/dashboardView.php';
-    $adminContent = ob_get_clean();
+        $summary = [
+            ['title' => 'Users', 'value' => count($tables['users'] ?? [])],
+            ['title' => 'Products', 'value' => count($tables['products'] ?? [])],
+            ['title' => 'Orders', 'value' => count($tables['orders'] ?? [])],
+            ['title' => 'Revenue', 'value' => '$' . number_format(array_sum(array_column($tables['orders'] ?? [], 'total')), 2)],
+        ];
 
-    // Include the header (layout + sidebar + topbar)
-    ob_start();
-    require APP_VIEWS_PATH . '/admin/adminHeader.php';
-    $html = ob_get_clean();
+        $charts = [
+            [
+                'id'    => 'ordersOverTime',
+                'title' => 'Orders Over Time',
+                'type'  => 'line',
+                'label' => 'Orders',
+                'data'  => array_column($this->dashboardModel->getOrdersOverTime(), 'count', 'date'),
+            ],
+            [
+                'id'    => 'productsByCategory',
+                'title' => 'Products by Category',
+                'type'  => 'bar',
+                'label' => 'Products',
+                'data'  => array_column($this->dashboardModel->getProductsByCategory(), 'count', 'category_name'),
+            ],
+        ];
 
-    $response->getBody()->write($html);
-    return $response;
-}
+        $recentOrders   = $this->dashboardModel->getRecentOrders();
+        $recentProducts = $this->dashboardModel->getRecentProducts();
+        $lowStock       = $this->dashboardModel->getLowStockProducts();
 
+        $page_title = 'Admin Dashboard';
+
+        ob_start();
+        require APP_VIEWS_PATH . '/admin/dashboardView.php';
+        $adminContent = ob_get_clean();
+
+        ob_start();
+        require APP_VIEWS_PATH . '/admin/adminHeader.php';
+        $html = ob_get_clean();
+
+        $response->getBody()->write($html);
+        return $response;
+    }
 }

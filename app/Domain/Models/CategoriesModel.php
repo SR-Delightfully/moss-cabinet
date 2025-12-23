@@ -1,164 +1,148 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Domain\Models;
 
 use App\Helpers\Core\PDOService;
 use PDO;
 
-/**
- * Base model class for all models.
- *
- * This class provides a base implementation for all models with PDO wrapper methods.
- * It is intended to be extended by specific model classes.
- *
- * @example
- * class UserModel extends BaseModel {
- *     public function findById(int $id): array|false {
- *         return $this->selectOne('SELECT * FROM users WHERE id = ?', [$id]);
- *     }
- * }
- */
-class CategoriesModel extends BaseModel {
-    public function __construct (PDOService $pdo) {
-        parent ::__construct($pdo); //pass it to the parent class
+class CategoriesModel extends BaseModel
+{
+    protected string $table = 'categories';
+    protected string $primaryKey = 'category_id';
+
+    public function __construct(PDOService $pdoService)
+    {
+        parent::__construct($pdoService);
     }
 
-
-//fetches the list of categories
-
-
-    public function getCategories (): mixed {
-        // {$sql = "SELECT * FROM products";
-        //     $products = $this->selectAll($sql);
-
-
-        //  $sql = "SELECT * FROM {$this->categories}";
+    public function getCategories(): array
+    {
         $sql = "SELECT * FROM categories";
-
-        $categories = $this -> selectAll($sql);
-        return $categories;
-
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getAllCategoriesWithProducts (): array {
+    public function getAll(): array
+    {
+        $sql = "
+            SELECT category_id, category_name, category_description
+            FROM categories
+            ORDER BY category_name
+        ";
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllWithSubcategories(): array
+    {
+        $sql = "
+            SELECT
+                c.category_id,
+                c.category_name,
+                s.subcategory_id,
+                s.subcategory_name
+            FROM categories c
+            LEFT JOIN subcategories s ON s.category_id = c.category_id
+            ORDER BY c.category_name, s.subcategory_name
+        ";
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllCategoriesWithProducts(): array
+    {
+        $sql = "
+            SELECT
+                c.category_id,
+                c.category_name,
+                p.product_id,
+                p.product_name
+            FROM categories c
+            LEFT JOIN products p ON p.category_id = c.category_id
+            ORDER BY c.category_name, p.product_name
+        ";
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getById(int $categoryId): ?array
+    {
+        $sql = "
+            SELECT category_id, category_name, category_description
+            FROM categories
+            WHERE category_id = :category_id
+            LIMIT 1
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['category_id' => $categoryId]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ?: null;
+    }
+
+    public function getOneWithSubcategories(int $categoryId): array
+    {
         $sql = "
             SELECT
                 c.category_id,
                 c.category_name,
                 c.category_description,
-
-                p.product_id,
-                p.product_name,
-                p.product_price,
-
-                img.image_file_path AS primary_image
-
+                s.subcategory_id,
+                s.subcategory_name
             FROM categories c
-            LEFT JOIN products p 
-                ON p.category_id = c.category_id
-
-            LEFT JOIN product_images img 
-                ON img.product_id = p.product_id
-                AND img.is_primary = 1
-
-            ORDER BY c.category_id, p.product_id
+            LEFT JOIN subcategories s ON s.category_id = c.category_id
+            WHERE c.category_id = :category_id
+            ORDER BY s.subcategory_name
         ";
-
-        $rows = $this -> selectAll($sql);
-
-        if (!$rows) {
-            return [];
-        }
-
-        $categories = [];
-
-        foreach ($rows as $row) {
-
-            $cid = $row['category_id'];
-
-            if (!isset($categories[$cid])) {
-                $categories[$cid] = [
-                    'category_id' => $row['category_id'],
-                    'category_name' => $row['category_name'],
-                    'category_description' => $row['category_description'] ?? '',
-                    'products' => []
-                ];
-            }
-
-            if (!empty($row['product_id'])) {
-                $categories[$cid]['products'][] = [
-                    'product_id' => $row['product_id'],
-                    'product_name' => $row['product_name'],
-                    'product_price' => $row['product_price'],
-                    'primary_image' => $row['primary_image'] ?: 'images/default.jpg'
-                ];
-            }
-        }
-
-        return array_values($categories);
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['category_id' => $categoryId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
-    public function searchFilteredCategories (string $query): mixed {
+    public function getWithProductCounts(): array
+    {
         $sql = "
-           SELECT
+            SELECT
                 c.category_id,
                 c.category_name,
-                c.category_description,
-                p.product_id,
-                p.product_name,
-                p.product_price,
-                img.image_file_path AS primary_image
+                COUNT(p.product_id) AS product_count
             FROM categories c
-                LEFT JOIN products p 
-                    ON p.category_id = c.category_id
-                LEFT JOIN product_images img 
-                    ON img.product_id = p.product_id
-                    AND img.is_primary = 1
-            WHERE 
-                LOWER(c.category_name) LIKE ? 
-                OR 
-                (p.product_id IS NOT NULL AND LOWER(p.product_name) LIKE ?)
-            ORDER BY c.category_id, p.product_id
+            LEFT JOIN products p ON p.category_id = c.category_id
+            GROUP BY c.category_id
+            ORDER BY product_count DESC
         ";
-
-        $search = '%' . strtolower($query) . '%';
-        $rows = $this -> selectAll($sql, [$search, $search]);
-
-        if (!$rows) {
-            return [];
-        }
-
-        $categories = [];
-
-        foreach ($rows as $row) {
-
-            $cid = $row['category_id'];
-
-            if (!isset($categories[$cid])) {
-                $categories[$cid] = [
-                    'category_id' => $row['category_id'],
-                    'category_name' => $row['category_name'],
-                    'category_description' => $row['category_description'] ?? '',
-                    'products' => []
-                ];
-            }
-
-            if (!empty($row['product_id'])) {
-                $categories[$cid]['products'][] = [
-                    'product_id' => $row['product_id'],
-                    'product_name' => $row['product_name'],
-                    'product_price' => $row['product_price'],
-                    'primary_image' => $row['primary_image'] ?: 'images/default.jpg'
-                ];
-            }
-        }
-
-        return array_values($categories);
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function create(string $name, ?string $description = null): bool
+    {
+        $sql = "
+            INSERT INTO categories (category_name, category_description)
+            VALUES (:name, :description)
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute([
+            'name' => $name,
+            'description' => $description
+        ]);
+    }
+
+    public function update(int $categoryId, string $name, ?string $description = null): bool
+    {
+        $sql = "
+            UPDATE categories
+            SET category_name = :name,
+                category_description = :description
+            WHERE category_id = :category_id
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute([
+            'category_id' => $categoryId,
+            'name' => $name,
+            'description' => $description
+        ]);
+    }
+
+    public function delete(int $categoryId): bool
+    {
+        $sql = "DELETE FROM categories WHERE category_id = :category_id";
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute(['category_id' => $categoryId]);
+    }
 }
-
-
-

@@ -25,7 +25,6 @@ $currentUser = UserContext::getCurrentUser();
     <link rel="stylesheet" href="./public/assets/css/08-Product-Styles.css">
     <link rel="stylesheet" href="./public/assets/css/09-Settings-Styles.css">
     <link rel="stylesheet" href="./public/assets/css/10-Admin-Styles.css">
-    <link rel="stylesheet" href="./public/assets/css/10-Admin-Styles-Helenes-Horror.css">
     <link rel="stylesheet" href="./public/assets/css/11-NavBar-Styles.css">
     <link rel="stylesheet" href="./public/assets/css/12-Footer-Styles.css">
     <link rel="stylesheet" href="./public/assets/css/13-Admin-Styles.css">

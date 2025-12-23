@@ -1,18 +1,21 @@
 <?php
 
 declare(strict_types=1);
+/**
+ * Environment-specific application configuration.
+ *
+ * You should store all secret information (usernames, passwords, tokens,
+ * private keys) here.
+ *
+ */
+
 
 return function (array $settings): array {
-    // Database credentials for moss-cabinet
-    $settings['db']['host'] = 'localhost';
-    $settings['db']['port'] = 3306;
+    // Database credentials
     $settings['db']['username'] = 'root';
     $settings['db']['database'] = 'moss_cabinet_db';
-    $settings['db']['password'] = 'password';
-    $settings['db']['charset'] = 'utf8mb4';
-    $settings['db']['collation'] = 'utf8mb4_unicode_ci';
+    $settings['db']['password'] = '';
 
-    // Add any other settings here
-
+    //TODO: Additional settings/configs can be declared here.
     return $settings;
 };
