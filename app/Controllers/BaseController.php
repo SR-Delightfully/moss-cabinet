@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Controllers;
 
@@ -11,19 +11,17 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Routing\RouteContext;
 
-abstract class BaseController
-{
+abstract class BaseController {
     protected PhpRenderer $view;
     protected AppSettings $settings;
     protected Container $container;
 
     //NOTE: Passing the entire DI container violates the Dependency Inversion Principle and creates a service locator anti-pattern.
     // However, it is a simple and effective way to pass the container to the controller given the small scope of the application and the fact that this application is to be used in a classroom setting where students are not yet familiar with the Dependency Inversion Principle.
-    public function __construct(Container $container)
-    {
-        $this->container = $container;
-        $this->settings = $container->get(AppSettings::class);
-        $this->view = $container->get(PhpRenderer::class);
+    public function __construct (Container $container) {
+        $this -> container = $container;
+        $this -> settings = $container -> get(AppSettings::class);
+        $this -> view = $container -> get(PhpRenderer::class);
     }
 
     /**
@@ -43,11 +41,10 @@ abstract class BaseController
      * @throws \Slim\Exception\HttpInternalServerErrorException If the view cannot be rendered.
      *
      */
-    protected function render(Response $response, string $view_name, array $data = []): Response
-    {
-        $response = $response->withHeader('Content-Type', 'text/html; charset=utf-8');
+    protected function render (Response $response, string $view_name, array $data = []): Response {
+        $response = $response -> withHeader('Content-Type', 'text/html; charset=utf-8');
         //dd($data);
-        return $this->view->render($response, $view_name, $data);
+        return $this -> view -> render($response, $view_name, $data);
     }
 
     /**
@@ -83,10 +80,9 @@ abstract class BaseController
      * // Redirect with both route parameters and query strings (for route: /users/{id}/edit)
      * return $this->redirect($request, $response, 'user.edit', ['id' => 123], ['tab' => 'settings']);
      */
-    protected function redirect(Request $request, Response $response, string $route_name, array $uri_args = [], array $query_params = []): Response
-    {
-        $route_parser = RouteContext::fromRequest($request)->getRouteParser();
-        $target_uri = $route_parser->urlFor($route_name, $uri_args, $query_params);
-        return $response->withStatus(302)->withHeader('Location', $target_uri);
+    protected function redirect (Request $request, Response $response, string $route_name, array $uri_args = [], array $query_params = []): Response {
+        $route_parser = RouteContext ::fromRequest($request) -> getRouteParser();
+        $target_uri = $route_parser -> urlFor($route_name, $uri_args, $query_params);
+        return $response -> withStatus(302) -> withHeader('Location', $target_uri);
     }
 }
