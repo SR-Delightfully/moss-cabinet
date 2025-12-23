@@ -17,24 +17,24 @@ $currentUser = UserContext::getCurrentUser();
     <link rel="stylesheet" href="./public/assets/css/00-Global-Styles.css">
     <link rel="stylesheet" href="./public/assets/css/01-Authorization-Styles.css">
     <link rel="stylesheet" href="./public/assets/css/02-Home-Styles.css">
-    <link rel="stylesheet" href="./public/assets/css/03-Profile-Styles.css">
-    <link rel="stylesheet" href="./public/assets/css/04-Cart-Styles.css">
+    <link rel="stylesheet" href="./public/assets/css/03-Checkout-Styles.css">
+    <link rel="stylesheet" href="./public/assets/css/04-Profile-Styles.css">
     <link rel="stylesheet" href="./public/assets/css/05-Categories-Styles.css">
     <link rel="stylesheet" href="./public/assets/css/06-Collections-Styles.css">
     <link rel="stylesheet" href="./public/assets/css/07-Products-Styles.css">
     <link rel="stylesheet" href="./public/assets/css/08-Product-Styles.css">
     <link rel="stylesheet" href="./public/assets/css/09-Settings-Styles.css">
     <link rel="stylesheet" href="./public/assets/css/10-Admin-Styles.css">
-    <link rel="stylesheet" href="./public/assets/css/10-Admin-Styles-Helenes-Horror.css">
     <link rel="stylesheet" href="./public/assets/css/11-NavBar-Styles.css">
-    <link rel="stylesheet" href="./public/assets/css/12-NavBar-styles.css">
+    <link rel="stylesheet" href="./public/assets/css/12-Footer-Styles.css">
+    <link rel="stylesheet" href="./public/assets/css/13-Admin-Styles.css">
 
-<!--    for the files to be able to work with nginx :P-->
+    <!--    for the files to be able to work with nginx :P-->
     <link rel="stylesheet" href="/assets/css/00-Global-Styles.css">
     <link rel="stylesheet" href="/assets/css/01-Authorization-Styles.css">
     <link rel="stylesheet" href="/assets/css/02-Home-Styles.css">
-    <link rel="stylesheet" href="/assets/css/03-Profile-Styles.css">
-    <link rel="stylesheet" href="/assets/css/04-Cart-Styles.css">
+    <link rel="stylesheet" href="/assets/css/03-Checkout-Styles.css">
+    <link rel="stylesheet" href="/assets/css/04-Profile-Styles.css">
     <link rel="stylesheet" href="/assets/css/05-Categories-Styles.css">
     <link rel="stylesheet" href="/assets/css/06-Collections-Styles.css">
     <link rel="stylesheet" href="/assets/css/07-Products-Styles.css">
@@ -43,7 +43,8 @@ $currentUser = UserContext::getCurrentUser();
     <link rel="stylesheet" href="/assets/css/10-Admin-Styles.css">
     <link rel="stylesheet" href="/assets/css/10-Admin-Styles-Helenes-Horror.css">
     <link rel="stylesheet" href="/assets/css/11-NavBar-Styles.css">
-    <link rel="stylesheet" href="/assets/css/12-NavBar-styles.css">
+    <link rel="stylesheet" href="/assets/css/12-Footer-Styles.css">
+    <link rel="stylesheet" href="/assets/css/13-Admin-Styles.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

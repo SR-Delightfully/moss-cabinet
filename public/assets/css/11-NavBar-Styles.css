@@ -9,6 +9,7 @@
     padding: 1rem 3rem;
     justify-content: space-between;
     align-items: center;
+    min-width: 100vw;
 }
 
 #nav-bar-user {
@@ -78,16 +79,33 @@
     text-decoration: none;
     font-size: 1rem;
     letter-spacing: 0.05rem;
-    border: 2px solid hotpink;
-    min-width: 12vw;
+    min-width: 11vw;
+    text-align: center;
+    background-color: var(--color-light-teal-1);
+}
+
+.user-dropdown li:first-child > a {
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.user-dropdown li:last-child > a {
+    border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.user-dropdown li a:hover {
+    color: #dddddd;
+    background-color: var(--color-purple-2);
+    border-radius: 0.5rem;
 }
 
 .dropdown-toggle {
     font-size: 1.2rem;
-    width: 12vw;
+    width: 11vw;
     height: 2.5rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    border-radius: 0.5rem;
+    border: 2px solid var(--color-yellow-2);
 }
 
 .dropdown-toggle:focus,
@@ -122,4 +140,62 @@ h1, h2, h3, p {
     gap: 3rem;
     justify-content: center;
     align-items: center;
+    font-size: 20px;
+    margin-top: 1rem;
+}
+
+.tab {
+    position: relative;
+    height: 2rem;
+    width: 12rem;
+    padding: 1.6rem;
+    text-align: center;
+    border-radius: 1rem;
+    border: 2px solid var(--secondary-color);
+    line-height: 2rem;
+    line-height: 0;
+        
+    background: linear-gradient(
+        145deg,
+        var(--secondary-color),
+        var(--primary-color)
+    );
+
+    overflow: hidden;
+    transition: 
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.tab::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+
+    background: linear-gradient(
+        145deg,
+        var(--primary-color),
+        var(--secondary-color)
+    );
+
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+.tab:hover {
+    border-color: var(--color-yellow-2);
+    box-shadow:
+        0 10px 26px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.tab:hover::before {
+    opacity: 1;
+}
+
+.tab > * {
+    position: relative;
+    z-index: 1;
 }

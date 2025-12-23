@@ -271,6 +271,18 @@ class AuthController extends BaseController
         return $this->showForgotPasswordForm($request, $response, $args);
     }
 
+    public function showProfile (Request $request, Response $response): Response {
+        $user = UserContext::getCurrentUser();
+
+        return $this -> render($response, "profileView.php", [$user]);
+    }
+
+    public function showWishlist (Request $request, Response $response): Response {
+        $user = UserContext::getCurrentUser();
+
+        return $this -> render($response, "wishlistView.php", [$user]);
+    }
+
 
     // -------------------------------
     // SIGN OUT
