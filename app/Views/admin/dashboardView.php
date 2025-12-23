@@ -146,47 +146,102 @@
 </section>
 
 <!-- DATABASE TABLES -->
-<section id="database-tables" class="square-deco-container container" style="overflow: visible;">
-    <div class="square-deco-content img-container">
+<section id="database-tables" class="square-deco-container container">
+    <div class="square-deco-content">
 
         <?php $toggle = true; ?>
         <?php foreach ($tables as $tableName => $rows): ?>
             <?php if (!empty($rows)): ?>
                 <?php 
                     $tableKey = strtolower(str_replace(' ', '-', $tableName)) . '-table'; 
-                    $toggle = !$toggle; // alternate layout
+                    $layoutClass = $toggle ? 'layout-left-table' : 'layout-left-form';
                 ?>
-                <div class="admin-crud-grid <?php echo $toggle ? 'layout-left-table' : 'layout-left-form'; ?>">
+                <div class="admin-crud-grid <?= $layoutClass ?>">
 
-                    <!-- LEFT COLUMN -->
-                    <div class="admin-table-column square-deco-container full-width-table">
+                    <!-- TABLE COLUMN -->
+                    <div class="admin-table-column square-deco-container">
                         <div class="square-deco-content table-scroll">
                             <h3 class="table-title"><?= htmlspecialchars($tableName) ?></h3>
                             <table class="table table-bordered table-striped table-hover full-width-table">
                                 <thead>
                                     <tr>
                                         <?php foreach (array_keys($rows[0]) as $col): ?>
-                                        <th><?= htmlspecialchars($col) ?></th>
+                                            <th><?= htmlspecialchars($col) ?></th>
                                         <?php endforeach; ?>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($rows as $row): ?>
-                                    <tr data-id="<?= $row[array_key_first($row)] ?>">
-                                        <?php foreach ($row as $cell): ?>
-                                        <td><?= htmlspecialchars((string)$cell) ?></td>
-                                        <?php endforeach; ?>
-                                        <td class="actions-cell">
-                                            <button class="btn btn-sm btn-primary edit-btn">Edit</button>
-                                            <form method="post" action="/admin/crud/<?= strtolower($tableName) ?>/<?= $row[array_key_first($row)] ?>/delete" style="display:inline" onsubmit="return confirm('Delete this item?')">
-                                                <button class="btn btn-sm btn-danger">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                        <?php $pkValue = $row[array_key_first($row)]; ?>
+                                        <tr data-id="<?= $pkValue ?>">
+                                            <?php foreach ($row as $cell): ?>
+                                                <td><?= htmlspecialchars((string)$cell) ?></td>
+                                            <?php endforeach; ?>
+                                            <td class="actions-cell">
+                                                <!-- Edit Button -->
+                                                <button class="btn btn-sm btn-primary edit-btn">Edit</button>
+
+                                                <!-- Delete Form -->
+                                                <form method="post" action="/admin/<?= strtolower($tableName) ?>/delete" style="display:inline" onsubmit="return confirm('Delete this item?')">
+                                                    <input type="hidden" name="<?= array_key_first($row) ?>" value="<?= $pkValue ?>">
+                                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
+                        </div>
+
+                        <div class="square-deco-inner"></div>
+                        <div class="square-deco-square-left-top"></div>
+                        <div class="square-deco-square-left-bottom"></div>
+                        <div class="square-deco-square-right-top"></div>
+                        <div class="square-deco-square-right-bottom"></div>
+                        <div class="square-deco-tall"></div>
+                        <div class="square-deco-wide"></div>
+                    </div>
+
+                    <!-- FORM COLUMN -->
+                    <div class="admin-form-column square-deco-container">
+                        <div class="square-deco-content">
+
+                            <!-- Floating Edit Form -->
+                            <div class="edit-form-wrapper" id="<?= $tableKey ?>-form-wrapper" style="display:none;">
+                                <div class="square-deco-content edit-form-content">
+                                    <button class="btn btn-sm btn-danger close-form">X</button>
+                                    <h4>Edit <?= htmlspecialchars($tableName) ?></h4>
+                                    <form method="post" class="edit-form" enctype="multipart/form-data">
+                                        <!-- JS will populate inputs here -->
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- New Record Form -->
+                            <div class="new-form-wrapper">
+                                <div class="square-deco-content edit-form-content">
+                                    <h4>New <?= htmlspecialchars($tableName) ?></h4>
+                                    <form method="post" class="new-form" enctype="multipart/form-data" action="/admin/<?= strtolower($tableName) ?>/create">
+                                        <?php 
+                                        $excludedColumns = ['id','created_at','updated_at'];
+                                        foreach(array_keys($rows[0]) as $col):
+                                            if(in_array($col,$excludedColumns)) continue;
+                                        ?>
+                                            <label><?= htmlspecialchars($col) ?></label>
+                                            <input type="text" name="<?= htmlspecialchars($col) ?>">
+                                        <?php endforeach; ?>
+
+                                        <?php if(strtolower($tableName) === 'products'): ?>
+                                            <label>Product Image</label>
+                                            <input type="file" name="productimage" accept="image/*">
+                                        <?php endif; ?>
+
+                                        <button class="btn btn-primary btn-sm" type="submit">Create</button>
+                                    </form>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="square-deco-inner"></div>
                         <div class="square-deco-square-left-top"></div>
@@ -197,59 +252,13 @@
                         <div class="square-deco-wide"></div>
                     </div>
 
-                    <!-- RIGHT COLUMN: FORM -->
-                    <div class="admin-form-column square-deco-container">
-                        <div class="square-deco-content">
-                            <!-- Floating Edit Form -->
-                            <div class="edit-form-wrapper" id="<?= $tableKey ?>-form-wrapper">
-                                <div class="square-deco-content edit-form-content">
-                                    <button class="btn btn-sm btn-danger close-form">X</button>
-                                    <h4>Edit <?= htmlspecialchars($tableName) ?></h4>
-                                    <form method="post" class="edit-form"></form>
-                                </div>
-                                <div class="square-deco-inner"></div>
-                                <div class="square-deco-square-left-top"></div>
-                                <div class="square-deco-square-left-bottom"></div>
-                                <div class="square-deco-square-right-top"></div>
-                                <div class="square-deco-square-right-bottom"></div>
-                                <div class="square-deco-tall"></div>
-                                <div class="square-deco-wide"></div>
-                            </div>
-
-                            <!-- New Record Form -->
-                            <div class="new-form-wrapper square-deco-container">
-                                <div class="square-deco-content edit-form-content">
-                                    <h4>New <?= htmlspecialchars($tableName) ?></h4>
-                                    <form method="post" class="new-form">
-                                        <?php 
-                                        $excludedColumns = ['id', 'created_at', 'updated_at'];
-                                        foreach(array_keys($rows[0]) as $col): 
-                                            if(in_array($col, $excludedColumns)) continue;
-                                        ?>
-                                            <label><?= htmlspecialchars($col) ?></label>
-                                            <input type="text" name="<?= htmlspecialchars($col) ?>">
-                                        <?php endforeach; ?>
-                                        <button class="btn btn-primary btn-sm" type="submit">Create</button>
-                                    </form>
-                                </div>
-                                <div class="square-deco-inner"></div>
-                                <div class="square-deco-square-left-top"></div>
-                                <div class="square-deco-square-left-bottom"></div>
-                                <div class="square-deco-square-right-top"></div>
-                                <div class="square-deco-square-right-bottom"></div>
-                                <div class="square-deco-tall"></div>
-                                <div class="square-deco-wide"></div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
+                <?php $toggle = !$toggle; ?>
             <?php endif; ?>
         <?php endforeach; ?>
 
     </div>
 </section>
-
 
 <script>
 document.querySelectorAll('.admin-table-column .edit-btn').forEach(btn => {
@@ -268,25 +277,36 @@ document.querySelectorAll('.admin-table-column .edit-btn').forEach(btn => {
         // Clear previous inputs
         form.innerHTML = '';
 
+        // Get headers except "Actions"
         const headers = Array.from(grid.querySelectorAll('th'))
             .map(th => th.textContent.trim())
             .filter(h => h !== 'Actions');
 
+        // Add inputs for each header
         row.querySelectorAll('td').forEach((td, i) => {
             if(i < headers.length){
-                form.innerHTML += `
-                    <label>${headers[i]}</label>
-                    <input type="text" name="${headers[i]}" value="${td.textContent.trim()}">
-                `;
+                const colName = headers[i];
+                if(colName.toLowerCase() === 'product_image'){
+                    form.innerHTML += `<label>${colName}</label><input type="file" name="${colName}" accept="image/*">`;
+                } else {
+                    form.innerHTML += `<label>${colName}</label><input type="text" name="${colName}" value="${td.textContent.trim()}">`;
+                }
             }
         });
 
-        const primaryKey = row.dataset.id;
-        const tableName = tableTitle.toLowerCase().replace(/\s+/g,'');
-        form.action = `/admin/crud/${tableName}/${primaryKey}/update`;
+        // Add hidden primary key field
+        const pkName = headers[0];
+        const pkValue = row.dataset.id;
+        if (!headers.includes(pkName)) form.innerHTML += `<input type="hidden" name="${pkName}" value="${pkValue}">`;
 
+        // Set form action dynamically
+        const tableSlug = tableTitle.toLowerCase();
+        form.action = `./admin/${tableSlug}/${pkValue}/update`;
+
+        // Add save button
         form.innerHTML += `<button class="btn btn-primary btn-sm" type="submit">Save Changes</button>`;
 
+        // Show the form
         formWrapper.style.display = 'block';
     });
 });
@@ -297,3 +317,4 @@ document.querySelectorAll('.close-form').forEach(btn => {
     });
 });
 </script>
+

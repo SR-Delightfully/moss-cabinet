@@ -147,9 +147,14 @@
 /* --- RECENT PRODUCTS --- */
 #recent-products {
     grid-area: recent;
-    padding: 0;
-    margin: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 !important;
     background: none !important;
+    box-shadow: none !important;
+    border: none !important;
 }
 #recent-products > ul {
     display: flex;
@@ -275,3 +280,105 @@
 }
 
 .edit-form-content button.close-form { align-self: flex-end; }
+
+/* --- STAGGERED TABLE/FORM LAYOUT --- */
+.admin-crud-grid {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    align-items: start;
+}
+
+/* Wide table / thin form */
+.admin-crud-grid.layout-left-table {
+    grid-template-columns: 3fr 1fr; /* table wide, form thin */
+}
+
+/* Thin table / wide form */
+.admin-crud-grid.layout-left-form {
+    grid-template-columns: 1fr 3fr; /* table thin, form wide */
+}
+
+/* Grid area assignment (for potential named areas) */
+.admin-table-column { grid-area: table; }
+.admin-form-column { grid-area: form; }
+
+/* --- Table container wrapping --- */
+.admin-table-column > .square-deco-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 400px;
+}
+
+/* Table scroll */
+.admin-table-column .table-scroll {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+/* Table styling */
+.full-width-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.full-width-table th,
+.full-width-table td {
+    padding: 0.6rem;
+    text-align: left;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.selected-row { background-color: rgba(255,255,0,0.2); }
+
+/* --- Form container wrapping --- */
+.admin-form-column > .square-deco-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 350px;
+}
+
+/* Forms styling */
+.edit-form-content,
+.new-form-wrapper .square-deco-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    min-height: 350px;
+}
+
+.new-form-wrapper input,
+.edit-form-content input {
+    width: 100%;
+}
+
+/* --- FLOATING EDIT FORM --- */
+.edit-form-wrapper {
+    position: fixed;
+    min-width: 18rem;
+    max-width: 18rem;
+    min-height: 36rem;
+    max-height: 36rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 999;
+    display: none;
+}
+
+.edit-form-content {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(145deg,var(--primary-color),var(--secondary-color)), var(--secondary-color);
+    padding: 1rem;
+}
+
+.edit-form-content button.close-form { align-self: flex-end; }
+
+.square-deco-content {
+    position: relative;
+    z-index: 999    ;
+}

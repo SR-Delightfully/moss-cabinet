@@ -46,23 +46,20 @@ return static function(Slim\App $app): void {
     //* Base URI: localhost/3d-models-app/admin
     $app -> group('/admin', function($group) {
         //Add/register admin routes
-        $group->post('/crud/{table}/create', [AdminController::class, 'create']);
-        $group->post('/crud/{table}/{id}/update', [AdminController::class, 'update']);
-        $group->post('/crud/{table}/{id}/delete', [AdminController::class, 'delete']);
-
         $group -> get('', [DashboardController::class, 'index']) -> setName('dashboard.index');
         $group -> get('/', [DashboardController::class, 'index']) -> setName('dashboard.index');
         $group -> get('/users', [UsersController::class, 'index']) -> setName('products.index');
+
         $group -> get('/products', [ProductsController::class, 'adminIndex']) -> setName('admin.products.index');
         $group -> post('/products/create', [ProductsController::class, 'createProduct']);
-        $group -> get('/products/edit', [ProductsController::class, 'editProduct']);
-        $group -> get('/categories', [CategoriesController::class, 'index']) -> setName('categories.index');
-        $group -> post('/categories/create', [CategoriesController::class, 'index']) -> setName('categories.index');
-        $group -> get('/products/create', [ProductsController::class, 'showCreateForm'])
-            -> setName('admin.products.create');
-        $group -> get('/categories/create', [CategoriesController::class, 'showCreateForm'])
-            -> setName('admin.categories.create');
-    });
+        $group->post('/products/{id}/update', [ProductsController::class, 'updateProduct']);
+        $group->post('/products/{id}/delete', [ProductsController::class, 'deleteProduct']);
+
+    $group->get('/categories', [CategoryController::class, 'index'])->setName('admin.categories.index');
+    $group->post('/categories/create', [CategoryController::class, 'create'])->setName('admin.categories.create');
+    $group->post('/categories/{id}/update', [CategoryController::class, 'update'])->setName('admin.categories.update');
+    $group->post('/categories/{id}/delete', [CategoryController::class, 'delete'])->setName('admin.categories.delete');
+});
     // To be added once AdminAuthMiddleware is implemented.
     // })->add(AdminAuthMiddleware::class);
 
